@@ -2388,16 +2388,17 @@ async function showPPScore() {
 
   // Build a step-by-step summary
   const stepSummary = ppAnswers.map(a => {
-    if (a.skipped) return `<div style="padding:10px 14px;border-bottom:1px solid #eee;color:#999;font-size:0.8rem;font-style:italic;">${a.step} — skipped</div>`;
-    const c = a.score === 2 ? '#2d7a4f' : a.score === 1 ? '#8a7a20' : '#c94b35';
-    const v = a.aiResult?.verdict || '';
+    if (a.skipped) return `<div style="padding:10px 14px;border-bottom:1px solid #ddd;color:#999;font-size:0.8rem;font-style:italic;background:#fafafa;">${a.step} — skipped</div>`;
+    const c  = a.score === 2 ? '#2d7a4f' : a.score === 1 ? '#7a6510' : '#c94b35';
+    const bg = a.score === 2 ? '#f0faf4' : a.score === 1 ? '#fdfbf0' : '#fdf2f0';
+    const v  = a.aiResult?.verdict || '';
     return `
-      <div style="padding:12px 14px;border-bottom:1px solid #eee;">
+      <div style="padding:12px 14px;border-bottom:1px solid #ddd;background:${bg};">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-          <span style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:${c};">${a.step} — ${a.score}/2</span>
+          <span style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:${c};font-weight:700;">${a.step} — ${a.score}/2</span>
         </div>
-        <div style="font-size:0.82rem;color:#444;font-style:italic;margin-bottom:4px;">"${a.text.slice(0,120)}${a.text.length>120?'…':''}"</div>
-        ${v ? `<div style="font-size:0.8rem;color:#666;">${v}</div>` : ''}
+        <div style="font-size:0.82rem;color:#333;font-style:italic;margin-bottom:4px;line-height:1.5;">"${a.text.slice(0,120)}${a.text.length>120?'…':''}"</div>
+        ${v ? `<div style="font-size:0.8rem;color:#555;line-height:1.5;">${v}</div>` : ''}
       </div>`;
   }).join('');
 
@@ -2411,12 +2412,12 @@ async function showPPScore() {
         <div style="font-size:0.8rem;color:var(--grey);margin-top:6px;">Comparing ${pA.title} &amp; ${pB.title}</div>
       </div>
 
-      <div style="background:#1e1e1c;border:1px solid #333;margin-bottom:20px;">
-        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;padding:8px 14px;border-bottom:1px solid #333;color:#888;">Step breakdown</div>
+      <div style="background:#fff;border:2px solid var(--black);margin-bottom:20px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;padding:8px 14px;border-bottom:2px solid var(--black);color:#444;background:var(--mid);">Step breakdown</div>
         ${stepSummary}
       </div>
 
-      <div id="pp-holistic-feedback" style="background:#1e1e1c;border:1px solid var(--yellow);padding:20px;margin-bottom:20px;">
+      <div id="pp-holistic-feedback" style="background:#fff;border:2px solid var(--yellow);padding:20px;margin-bottom:20px;">
         <div style="display:flex;align-items:center;gap:8px;color:#888;font-family:'DM Mono',monospace;font-size:0.7rem;">
           <div class="pp-spinner" style="border-top-color:var(--yellow);"></div>
           Generating expert analysis…
@@ -2431,7 +2432,8 @@ async function showPPScore() {
   `;
 
   // Request holistic AI summary + alternative pair suggestion
-  await generateHolisticFeedback();
+  // Small delay to ensure DOM is fully painted before async call
+  setTimeout(() => generateHolisticFeedback(), 100);
 }
 
 async function generateHolisticFeedback() {
@@ -2500,25 +2502,25 @@ function renderHolisticFeedback(r) {
   const el = document.getElementById('pp-holistic-feedback');
   if (!el) return;
   el.innerHTML = `
-    <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:12px;">Expert Analysis</div>
+    <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#7a6510;margin-bottom:12px;">Expert Analysis</div>
 
-    <div style="font-size:0.88rem;line-height:1.7;color:var(--cream);margin-bottom:14px;">${r.holisticAssessment || ''}</div>
+    <div style="font-size:0.88rem;line-height:1.7;color:#1a1a18;margin-bottom:14px;">${r.holisticAssessment || ''}</div>
 
-    ${r.keyPriority ? `<div style="padding:10px 14px;border-left:3px solid var(--red);background:rgba(201,75,53,0.12);margin-bottom:14px;">
+    ${r.keyPriority ? `<div style="padding:10px 14px;border-left:3px solid var(--red);background:#fdf2f0;margin-bottom:14px;">
       <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:3px;">Priority for next time</div>
-      <div style="font-size:0.85rem;line-height:1.5;color:var(--cream);">${r.keyPriority}</div>
+      <div style="font-size:0.85rem;line-height:1.5;color:#1a1a18;">${r.keyPriority}</div>
     </div>` : ''}
 
-    ${r.alternativeSuggestion ? `<div style="padding:10px 14px;border-left:3px solid var(--blue);background:rgba(168,197,200,0.1);margin-bottom:14px;">
-      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:3px;">Alternative poem pairing</div>
-      <div style="font-size:0.85rem;line-height:1.5;color:var(--cream);">${r.alternativeSuggestion}</div>
+    ${r.alternativeSuggestion ? `<div style="padding:10px 14px;border-left:3px solid #5a8fa0;background:#f0f6f8;margin-bottom:14px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#5a8fa0;margin-bottom:3px;">Alternative poem pairing</div>
+      <div style="font-size:0.85rem;line-height:1.5;color:#1a1a18;">${r.alternativeSuggestion}</div>
     </div>` : ''}
 
-    ${r.powerQuote ? `<div style="padding:10px 14px;border-left:3px solid var(--yellow);background:rgba(223,200,74,0.08);">
-      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:3px;">Powerful quote you could have used</div>
-      <div style="font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;color:var(--cream);margin-bottom:4px;">${r.powerQuote}</div>
-      <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:#888;margin-bottom:5px;">— ${r.powerQuotePoem || ''}</div>
-      <div style="font-size:0.82rem;line-height:1.5;color:#bbb;">${r.powerQuoteWhy || ''}</div>
+    ${r.powerQuote ? `<div style="padding:10px 14px;border-left:3px solid #b09a20;background:#fdfbf0;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#7a6510;margin-bottom:3px;">Powerful quote you could have used</div>
+      <div style="font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;color:#1a1a18;margin-bottom:4px;">${r.powerQuote}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:#666;margin-bottom:5px;">— ${r.powerQuotePoem || ''}</div>
+      <div style="font-size:0.82rem;line-height:1.5;color:#444;">${r.powerQuoteWhy || ''}</div>
     </div>` : ''}
   `;
 }
