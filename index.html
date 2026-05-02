@@ -2284,7 +2284,7 @@ Mark this response strictly and return valid JSON only.`;
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-5',
         max_tokens: 1000,
         system: systemPrompt,
         messages: [{ role: 'user', content: userPrompt }],
@@ -2486,13 +2486,16 @@ Return valid JSON only.`;
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-5',
         max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }],
+        messages: [{ role: 'user', content: prompt.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '') }],
       }),
     });
 
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    if (!resp.ok) {
+      const errText = await resp.text().catch(() => '');
+      throw new Error('HTTP ' + resp.status + (errText ? ': ' + errText.slice(0, 200) : ''));
+    }
 
     const data = await resp.json();
 
