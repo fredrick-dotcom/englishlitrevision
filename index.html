@@ -1066,7 +1066,7 @@ nav {
     <button class="nav-btn" onclick="showPage('flashcards')">Flashcards</button>
     <button class="nav-btn" onclick="showPage('practice')">PEEZL Practice</button>
     <button class="nav-btn" onclick="showPage('guide')">Essay Guide</button>
-    <button class="nav-btn" onclick="showPage('progress')" style="margin-left:auto;border-left:1px solid #333;border-right:none;" id="nav-progress-btn">
+    <button class="nav-btn" onclick="goToProgress()" style="margin-left:auto;border-left:1px solid #333;border-right:none;" id="nav-progress-btn">
       <span id="nav-avatar" style="display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--yellow);vertical-align:middle;margin-right:6px;overflow:hidden;font-size:0;"></span>
       <span id="nav-username">Student</span> · Progress
     </button>
@@ -1089,7 +1089,7 @@ nav {
 <!-- ═══ XP BAR ═══ -->
 <div id="xp-bar-container">
   <!-- Avatar + name — clickable to open profile modal -->
-  <button onclick="showPage('progress')" title="View Progress" style="display:flex;align-items:center;gap:7px;background:none;border:none;cursor:pointer;padding:0;flex-shrink:0;outline:none;">
+  <button onclick="goToProgress()" title="View Progress" style="display:flex;align-items:center;gap:7px;background:none;border:none;cursor:pointer;padding:0;flex-shrink:0;outline:none;">
     <div id="xp-bar-avatar" style="width:26px;height:26px;border-radius:50%;background:var(--yellow);border:2px solid #444;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:0.75rem;font-weight:900;color:var(--black);flex-shrink:0;transition:border-color 0.2s;">S</div>
     <div style="text-align:left;">
       <div id="xp-bar-name" style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.08em;color:#aaa;white-space:nowrap;max-width:80px;overflow:hidden;text-overflow:ellipsis;line-height:1.2;">Student</div>
@@ -3282,10 +3282,10 @@ function updateProgressPage() {
       '📖 Answer <strong>' + Math.ceil(remaining / 60) + ' hard flashcards</strong> correctly',
       '✍️ Complete <strong>' + Math.ceil(remaining / 75) + ' PEEZL sessions</strong> with strong scores',
       '⚡ Build a streak — each card in a streak earns bonus XP (up to +25)',
-      '🎯 Aim for 2/2 on every PEEZL step — that's <strong>30 XP per step</strong>',
+      '🎯 Aim for 2/2 on every PEEZL step — that\'s <strong>30 XP per step</strong>',
     ].map(t => `<div style="margin-bottom:4px;">${t}</div>`).join('');
   } else {
-    tipEl.innerHTML = '<div>You've reached the maximum level. Remarkable.</div>';
+    tipEl.innerHTML = '<div>You\'ve reached the maximum level. Remarkable.</div>';
   }
 
   // Apply profile to UI
@@ -3480,10 +3480,10 @@ function renderStepChart() {
 }
 
 // ── Hook showPage to render progress charts on visit ───
-const _origShowPage = showPage;
-function showPage(name) {
-  _origShowPage(name);
-  if (name === 'progress') updateProgressPage();
+// (done by modifying the original function below — see goToProgress helper)
+function goToProgress() {
+  showPage('progress');
+  updateProgressPage();
 }
 
 // ── Record a completed PEEZL session ──────────────────
