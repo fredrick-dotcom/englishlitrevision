@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Power & Conflict — GCSE Poetry Revision</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1065,6 +1066,10 @@ nav {
     <button class="nav-btn" onclick="showPage('flashcards')">Flashcards</button>
     <button class="nav-btn" onclick="showPage('practice')">PEEZL Practice</button>
     <button class="nav-btn" onclick="showPage('guide')">Essay Guide</button>
+    <button class="nav-btn" onclick="showPage('progress')" style="margin-left:auto;border-left:1px solid #333;border-right:none;" id="nav-progress-btn">
+      <span id="nav-avatar" style="display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--yellow);vertical-align:middle;margin-right:6px;overflow:hidden;font-size:0;"></span>
+      <span id="nav-username">Student</span> · Progress
+    </button>
   </div>
 </nav>
 
@@ -1083,10 +1088,24 @@ nav {
 
 <!-- ═══ XP BAR ═══ -->
 <div id="xp-bar-container">
-  <div>
+  <!-- Avatar + name — clickable to open profile modal -->
+  <button onclick="showPage('progress')" title="View Progress" style="display:flex;align-items:center;gap:7px;background:none;border:none;cursor:pointer;padding:0;flex-shrink:0;outline:none;">
+    <div id="xp-bar-avatar" style="width:26px;height:26px;border-radius:50%;background:var(--yellow);border:2px solid #444;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:0.75rem;font-weight:900;color:var(--black);flex-shrink:0;transition:border-color 0.2s;">S</div>
+    <div style="text-align:left;">
+      <div id="xp-bar-name" style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.08em;color:#aaa;white-space:nowrap;max-width:80px;overflow:hidden;text-overflow:ellipsis;line-height:1.2;">Student</div>
+    </div>
+  </button>
+
+  <!-- Divider -->
+  <div style="width:1px;height:28px;background:#2a2a2a;flex-shrink:0;"></div>
+
+  <!-- Level badge -->
+  <div style="flex-shrink:0;">
     <div class="xp-label-text">Level</div>
     <div class="xp-level-badge" id="xp-level-badge">1</div>
   </div>
+
+  <!-- Bar -->
   <div style="flex:1;min-width:0;">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;">
       <div class="xp-label-text" id="xp-level-name-label">Novice Reader</div>
@@ -1097,6 +1116,7 @@ nav {
       <div class="xp-tooltip" id="xp-tooltip">Loading...</div>
     </div>
   </div>
+
   <div class="xp-next-level" id="xp-next-level-label">Next: Attentive Scholar</div>
 </div>
 
@@ -1303,6 +1323,114 @@ nav {
 
     <div id="pp-content"></div>
     <div id="pp-holistic-wrap" style="display:none;max-width:680px;margin:0 auto 32px;"></div>
+  </div>
+</div>
+
+
+
+<!-- ═══════════ PROGRESS PAGE ═══════════ -->
+<div id="page-progress" class="page">
+
+  <!-- Profile edit modal -->
+  <div id="profile-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:500;align-items:center;justify-content:center;">
+    <div style="background:var(--paper);border:3px solid var(--black);max-width:420px;width:90%;padding:36px;position:relative;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:20px;">Edit Profile</div>
+
+      <!-- Avatar upload -->
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+        <div id="modal-avatar-preview" style="width:72px;height:72px;border-radius:50%;background:var(--yellow);border:3px solid var(--black);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--black);">S</div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:#666;margin-bottom:8px;">Profile Picture</div>
+          <label style="display:inline-block;padding:7px 14px;border:2px solid var(--black);font-family:'DM Mono',monospace;font-size:0.65rem;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;background:var(--mid);transition:all 0.2s;" onmouseover="this.style.background='var(--black)';this.style.color='var(--cream)'" onmouseout="this.style.background='var(--mid)';this.style.color='var(--black)'">
+            Upload Image
+            <input type="file" id="avatar-file-input" accept="image/png,image/jpeg,image/jpg,image/webp,image/gif,image/bmp,image/svg+xml" style="display:none;" onchange="handleAvatarUpload(event)">
+          </label>
+          <div id="avatar-upload-status" style="font-family:'DM Mono',monospace;font-size:0.6rem;color:#888;margin-top:6px;"></div>
+        </div>
+      </div>
+
+      <!-- Name input -->
+      <div style="margin-bottom:24px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:#666;margin-bottom:8px;">Display Name</div>
+        <input id="profile-name-input" type="text" maxlength="30" placeholder="Your name" style="width:100%;padding:10px 14px;border:2px solid var(--black);font-family:'Libre Baskerville',serif;font-size:1rem;background:var(--paper);outline:none;">
+      </div>
+
+      <div style="display:flex;gap:10px;">
+        <button onclick="confirmProfileEdit()" style="flex:1;padding:12px;background:var(--yellow);border:2px solid var(--yellow);font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-weight:700;">Confirm</button>
+        <button onclick="closeProfileModal()" style="padding:12px 20px;border:2px solid var(--black);background:none;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Profile header -->
+    <div style="display:flex;align-items:center;gap:24px;margin-bottom:40px;padding-bottom:32px;border-bottom:3px solid var(--black);">
+      <div style="position:relative;">
+        <div id="progress-avatar" style="width:88px;height:88px;border-radius:50%;background:var(--yellow);border:4px solid var(--black);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--black);flex-shrink:0;">S</div>
+      </div>
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+          <div id="progress-username-display" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1;">Student</div>
+          <button onclick="openProfileModal()" title="Edit profile" style="background:none;border:none;cursor:pointer;padding:4px;color:#888;font-size:1rem;transition:color 0.2s;" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='#888'">✏️</button>
+        </div>
+        <div id="progress-level-name" style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">Level 1 — Novice Reader</div>
+
+        <!-- XP bar on profile -->
+        <div style="max-width:400px;">
+          <div style="display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:0.6rem;color:#888;margin-bottom:4px;">
+            <span id="progress-xp-label">0 XP</span>
+            <span id="progress-xp-next">100 XP to next level</span>
+          </div>
+          <div style="height:10px;background:var(--mid);border:2px solid var(--black);position:relative;overflow:hidden;">
+            <div id="progress-xp-fill" style="height:100%;background:var(--yellow);transition:width 0.4s ease;width:0%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What to do to reach next level -->
+    <div id="progress-next-level-tips" style="background:var(--black);color:var(--cream);padding:20px 24px;margin-bottom:36px;border-left:4px solid var(--yellow);">
+      <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:12px;">To reach the next level</div>
+      <div id="progress-tips-list" style="font-size:0.85rem;line-height:1.9;color:var(--grey);"></div>
+    </div>
+
+    <!-- Charts grid -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;">
+
+      <!-- Flashcard mastery chart -->
+      <div style="background:#fff;border:2px solid var(--black);padding:24px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">Flashcards</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:16px;">Card Mastery</div>
+        <canvas id="chart-flashcards" height="180"></canvas>
+        <div id="chart-fc-legend" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-family:'DM Mono',monospace;font-size:0.6rem;"></div>
+      </div>
+
+      <!-- PEEZL score history chart -->
+      <div style="background:#fff;border:2px solid var(--black);padding:24px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">PEEZL Practice</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:16px;">Session Scores</div>
+        <canvas id="chart-peezl" height="180"></canvas>
+        <div id="chart-pp-empty" style="display:none;font-family:'DM Mono',monospace;font-size:0.65rem;color:#aaa;text-align:center;padding:40px 0;">Complete a PEEZL session to see your scores here.</div>
+      </div>
+
+    </div>
+
+    <!-- XP over time / level progress -->
+    <div style="background:#fff;border:2px solid var(--black);padding:24px;margin-bottom:24px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">XP Progress</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:16px;">Level Milestones</div>
+      <canvas id="chart-levels" height="100"></canvas>
+    </div>
+
+    <!-- Per-step PEEZL breakdown -->
+    <div style="background:#fff;border:2px solid var(--black);padding:24px;margin-bottom:32px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">PEEZL Analysis</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:16px;">Average Score per Step</div>
+      <canvas id="chart-steps" height="120"></canvas>
+      <div id="chart-steps-empty" style="display:none;font-family:'DM Mono',monospace;font-size:0.65rem;color:#aaa;text-align:center;padding:40px 0;">No PEEZL data yet. Complete a session to see your step-by-step breakdown.</div>
+    </div>
+
   </div>
 </div>
 
@@ -2403,6 +2531,9 @@ async function showPPScore() {
       </div>`;
   }).join('');
 
+  // Record this session in history
+  recordPPSession(ppScore, ppStepDefs.length * 2, ppPrimaryPoem, ppComparisonPoem, ppAnswers);
+
   // Render results — holistic section lives in pp-holistic-wrap (outside pp-content) so it never gets wiped
   document.getElementById('pp-content').innerHTML = `
     <div class="pp-score-board" style="max-width:680px;text-align:left;padding:36px;">
@@ -2777,7 +2908,7 @@ function closeLevelUp() {
 //   ppCurrentStep, ppScore, ppPrimaryPoem id,
 //   ppComparisonPoem id, ppQuestion, ppComparisonData
 
-const SAVE_VERSION = 3;
+const SAVE_VERSION = 4;
 
 function gatherSaveData() {
   return {
@@ -2785,6 +2916,10 @@ function gatherSaveData() {
     savedAt:        new Date().toISOString(),
     // XP / levels
     xpState:        { ...xpState },
+    // Profile
+    profileData:    { name: profileData.name, avatarDataUrl: profileData.avatarDataUrl },
+    // Session history
+    ppSessionHistory: ppSessionHistory,
     // Flashcard SRS engine
     fcSRS:          fcSRS,
     fcStreak:       fcStreak,
@@ -2842,6 +2977,16 @@ function applyLoadedData(data, fileName) {
     xpState.totalXP = Number(data.xpState.totalXP) || 0;
     xpState.level   = Number(data.xpState.level)   || 1;
   }
+
+  // ── Profile ──────────────────────────────────────────
+  if (data.profileData) {
+    profileData.name         = data.profileData.name         || 'Student';
+    profileData.avatarDataUrl = data.profileData.avatarDataUrl || null;
+    applyProfileToUI();
+  }
+
+  // ── Session history ───────────────────────────────────
+  if (Array.isArray(data.ppSessionHistory)) ppSessionHistory = data.ppSessionHistory;
 
   // ── Flashcards ──────────────────────────────────────
   if (data.fcSRS)                         fcSRS         = data.fcSRS;
@@ -2947,6 +3092,411 @@ function setSaveStatus(msg, state) {
   el.className = state === 'ok' ? 'ok' : state === 'err' ? 'err' : '';
 }
 
+
+// ═══════════════════════════════════════════════════════
+// PROFILE & PROGRESS PAGE
+// ═══════════════════════════════════════════════════════
+
+// ── Profile state ─────────────────────────────────────
+let profileData = {
+  name: 'Student',
+  avatarDataUrl: null,   // base64 data URL or null
+};
+
+// ── PEEZL session history (accumulated across sessions) ─
+let ppSessionHistory = [];  // [{score, total, date, poems}]
+
+// ── Flashcard daily history ────────────────────────────
+let fcDailyHistory = [];    // [{date, cardsAnswered, avgRating}]
+let fcDailyToday = { date: null, cardsAnswered: 0, ratingSum: 0 };
+
+// ── Chart instances (so we can destroy/redraw) ─────────
+let chartFC = null, chartPP = null, chartLevels = null, chartSteps = null;
+
+// ── Open/close profile modal ───────────────────────────
+function openProfileModal() {
+  const modal = document.getElementById('profile-modal');
+  document.getElementById('profile-name-input').value = profileData.name;
+  document.getElementById('avatar-upload-status').textContent = '';
+  // Show current avatar in modal preview
+  const preview = document.getElementById('modal-avatar-preview');
+  if (profileData.avatarDataUrl) {
+    preview.innerHTML = `<img src="${profileData.avatarDataUrl}" style="width:100%;height:100%;object-fit:cover;">`;
+  } else {
+    preview.textContent = (profileData.name || 'S')[0].toUpperCase();
+    preview.style.fontSize = '1.8rem';
+  }
+  modal.style.display = 'flex';
+}
+
+function closeProfileModal() {
+  document.getElementById('profile-modal').style.display = 'none';
+}
+
+function confirmProfileEdit() {
+  const name = document.getElementById('profile-name-input').value.trim() || 'Student';
+  profileData.name = name;
+  applyProfileToUI();
+  closeProfileModal();
+}
+
+function applyProfileToUI() {
+  // Nav
+  document.getElementById('nav-username').textContent = profileData.name;
+  const navAvatar = document.getElementById('nav-avatar');
+  if (profileData.avatarDataUrl) {
+    navAvatar.style.backgroundImage = `url(${profileData.avatarDataUrl})`;
+    navAvatar.style.backgroundSize = 'cover';
+    navAvatar.style.backgroundPosition = 'center';
+    navAvatar.innerHTML = '';
+    navAvatar.style.fontSize = '0';
+  } else {
+    navAvatar.style.backgroundImage = '';
+    navAvatar.innerHTML = '';
+    navAvatar.style.fontSize = '0';
+  }
+
+  // XP bar avatar + name
+  const xpBarAvatar = document.getElementById('xp-bar-avatar');
+  const xpBarName   = document.getElementById('xp-bar-name');
+  if (xpBarAvatar && xpBarName) {
+    xpBarName.textContent = profileData.name;
+    if (profileData.avatarDataUrl) {
+      xpBarAvatar.innerHTML = `<img src="${profileData.avatarDataUrl}" style="width:100%;height:100%;object-fit:cover;">`;
+      xpBarAvatar.style.fontSize = '0';
+    } else {
+      xpBarAvatar.textContent = (profileData.name || 'S')[0].toUpperCase();
+      xpBarAvatar.style.fontSize = '0.75rem';
+    }
+  }
+
+  // Progress page header
+  document.getElementById('progress-username-display').textContent = profileData.name;
+  const pgAvatar = document.getElementById('progress-avatar');
+  if (profileData.avatarDataUrl) {
+    pgAvatar.innerHTML = `<img src="${profileData.avatarDataUrl}" style="width:100%;height:100%;object-fit:cover;">`;
+  } else {
+    pgAvatar.textContent = (profileData.name || 'S')[0].toUpperCase();
+    pgAvatar.style.fontSize = '2.2rem';
+  }
+
+  // Modal preview
+  const modalPreview = document.getElementById('modal-avatar-preview');
+  if (profileData.avatarDataUrl) {
+    modalPreview.innerHTML = `<img src="${profileData.avatarDataUrl}" style="width:100%;height:100%;object-fit:cover;">`;
+  } else {
+    modalPreview.textContent = (profileData.name || 'S')[0].toUpperCase();
+  }
+}
+
+// ── Avatar upload with format validation & conversion ──
+async function handleAvatarUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const status = document.getElementById('avatar-upload-status');
+
+  const SUPPORTED = ['image/png','image/jpeg','image/jpg','image/webp','image/gif','image/bmp','image/svg+xml'];
+  if (!file.type.startsWith('image/')) {
+    status.textContent = 'Error: please upload an image file.';
+    status.style.color = 'var(--red)';
+    event.target.value = '';
+    return;
+  }
+  if (!SUPPORTED.includes(file.type)) {
+    status.textContent = 'Unsupported format: ' + file.type;
+    status.style.color = 'var(--red)';
+    event.target.value = '';
+    return;
+  }
+
+  status.textContent = 'Processing…';
+  status.style.color = '#888';
+
+  try {
+    // Convert any format to JPEG via canvas (handles bmp, webp, gif, svg etc.)
+    const dataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = e => resolve(e.target.result);
+      reader.onerror = () => reject(new Error('Read failed'));
+      reader.readAsDataURL(file);
+    });
+
+    // Draw onto canvas to normalise & compress
+    const img = await new Promise((resolve, reject) => {
+      const i = new Image();
+      i.onload = () => resolve(i);
+      i.onerror = () => reject(new Error('Could not load image'));
+      i.src = dataUrl;
+    });
+
+    const canvas = document.createElement('canvas');
+    const SIZE = 200;
+    canvas.width = SIZE; canvas.height = SIZE;
+    const ctx = canvas.getContext('2d');
+    // Centre-crop to square
+    const s = Math.min(img.width, img.height);
+    const ox = (img.width - s) / 2;
+    const oy = (img.height - s) / 2;
+    ctx.drawImage(img, ox, oy, s, s, 0, 0, SIZE, SIZE);
+
+    const finalUrl = canvas.toDataURL('image/jpeg', 0.85);
+    profileData.avatarDataUrl = finalUrl;
+
+    // Update modal preview immediately
+    document.getElementById('modal-avatar-preview').innerHTML =
+      `<img src="${finalUrl}" style="width:100%;height:100%;object-fit:cover;">`;
+    status.textContent = 'Image ready — hit Confirm to save.';
+    status.style.color = '#2d7a4f';
+  } catch(err) {
+    status.textContent = 'Error: ' + err.message;
+    status.style.color = 'var(--red)';
+  }
+  event.target.value = '';
+}
+
+// ── Update the progress page stats & charts ────────────
+function updateProgressPage() {
+  const lvlData = getLevelForXP(xpState.totalXP);
+  const nextLvl = getNextLevel(lvlData.level);
+
+  // Level label
+  document.getElementById('progress-level-name').textContent =
+    'Level ' + lvlData.level + ' — ' + lvlData.name;
+
+  // XP bar
+  const lvlStart = lvlData.xpRequired;
+  const lvlEnd   = nextLvl ? nextLvl.xpRequired : lvlData.xpRequired;
+  const inLvl    = xpState.totalXP - lvlStart;
+  const range    = lvlEnd - lvlStart || 1;
+  const pct      = nextLvl ? Math.min(100, (inLvl / range) * 100) : 100;
+  document.getElementById('progress-xp-fill').style.width = pct + '%';
+  document.getElementById('progress-xp-label').textContent = xpState.totalXP + ' XP total';
+  document.getElementById('progress-xp-next').textContent =
+    nextLvl ? (lvlEnd - xpState.totalXP) + ' XP to ' + nextLvl.name : 'Max Level!';
+
+  // Tips to reach next level
+  const tipEl = document.getElementById('progress-tips-list');
+  if (nextLvl) {
+    const remaining = lvlEnd - xpState.totalXP;
+    tipEl.innerHTML = [
+      '📖 Answer <strong>' + Math.ceil(remaining / 60) + ' hard flashcards</strong> correctly',
+      '✍️ Complete <strong>' + Math.ceil(remaining / 75) + ' PEEZL sessions</strong> with strong scores',
+      '⚡ Build a streak — each card in a streak earns bonus XP (up to +25)',
+      '🎯 Aim for 2/2 on every PEEZL step — that's <strong>30 XP per step</strong>',
+    ].map(t => `<div style="margin-bottom:4px;">${t}</div>`).join('');
+  } else {
+    tipEl.innerHTML = '<div>You've reached the maximum level. Remarkable.</div>';
+  }
+
+  // Apply profile to UI
+  applyProfileToUI();
+
+  // Render charts (destroy old ones first)
+  renderCharts();
+}
+
+// ── CHARTS ─────────────────────────────────────────────
+function renderCharts() {
+  renderFlashcardChart();
+  renderPEEZLChart();
+  renderLevelChart();
+  renderStepChart();
+}
+
+function renderFlashcardChart() {
+  const allRecords = Object.values(fcSRS);
+  const mastered   = allRecords.filter(r => r.lastRating === 5 && r.easeFactor >= 2.2).length;
+  const learning   = allRecords.filter(r => r.timesShown > 0 && r.lastRating === 3).length;
+  const struggling = allRecords.filter(r => r.timesShown > 0 && r.lastRating === 1).length;
+  const unseen     = allRecords.filter(r => !r.timesShown).length + (fcAllCards.length - allRecords.length);
+
+  const ctx = document.getElementById('chart-flashcards').getContext('2d');
+  if (chartFC) chartFC.destroy();
+
+  chartFC = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Mastered', 'Learning', 'Struggling', 'Not seen'],
+      datasets: [{
+        data: [mastered, learning, struggling, unseen],
+        backgroundColor: ['#2d7a4f','#dfc84a','#c94b35','#ccccc6'],
+        borderWidth: 2,
+        borderColor: '#1a1a18',
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' ' + ctx.label + ': ' + ctx.raw + ' cards' } }
+      },
+      cutout: '65%',
+    }
+  });
+
+  // Custom legend
+  const legend = document.getElementById('chart-fc-legend');
+  const colours = ['#2d7a4f','#dfc84a','#c94b35','#ccccc6'];
+  const labels  = ['Mastered','Learning','Struggling','Not seen'];
+  const values  = [mastered, learning, struggling, unseen];
+  legend.innerHTML = labels.map((l,i) =>
+    `<span style="display:flex;align-items:center;gap:4px;">
+      <span style="width:10px;height:10px;background:${colours[i]};display:inline-block;border:1px solid #1a1a18;"></span>
+      ${l} (${values[i]})
+    </span>`
+  ).join('');
+}
+
+function renderPEEZLChart() {
+  const ctx = document.getElementById('chart-peezl').getContext('2d');
+  const emptyEl = document.getElementById('chart-pp-empty');
+  if (chartPP) chartPP.destroy();
+
+  if (!ppSessionHistory.length) {
+    emptyEl.style.display = 'block';
+    ctx.canvas.style.display = 'none';
+    return;
+  }
+  emptyEl.style.display = 'none';
+  ctx.canvas.style.display = 'block';
+
+  const labels = ppSessionHistory.map((s,i) => '#' + (i+1) + (s.poems ? ' · ' + s.poems : ''));
+  const scores = ppSessionHistory.map(s => Math.round((s.score / s.total) * 100));
+
+  chartPP = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Score %',
+        data: scores,
+        backgroundColor: scores.map(s => s >= 80 ? '#2d7a4f' : s >= 50 ? '#dfc84a' : '#c94b35'),
+        borderColor: '#1a1a18',
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { min: 0, max: 100, ticks: { callback: v => v + '%' } },
+        x: { ticks: { font: { size: 9 }, maxRotation: 45 } }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+function renderLevelChart() {
+  const ctx = document.getElementById('chart-levels').getContext('2d');
+  if (chartLevels) chartLevels.destroy();
+
+  const levels    = XP_LEVELS.map(l => l.name.split(' ')[0] + ' ' + l.level);
+  const thresholds = XP_LEVELS.map(l => l.xpRequired);
+  const currentXP = xpState.totalXP;
+
+  chartLevels = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: levels,
+      datasets: [{
+        label: 'XP Required',
+        data: thresholds,
+        backgroundColor: thresholds.map(t => t <= currentXP ? '#dfc84a' : '#e8e4d8'),
+        borderColor: '#1a1a18',
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { ticks: { callback: v => v + ' XP' } },
+        x: { ticks: { font: { size: 9 }, maxRotation: 45 } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: ctx => (ctx.raw <= currentXP ? '✓ Reached · ' : '') + ctx.raw + ' XP'
+        }}
+      }
+    }
+  });
+}
+
+function renderStepChart() {
+  const ctx = document.getElementById('chart-steps').getContext('2d');
+  const emptyEl = document.getElementById('chart-steps-empty');
+  if (chartSteps) chartSteps.destroy();
+
+  const stepNames = ['Point','Evidence','Explain/Technique','Zoom','Link'];
+  // Aggregate scores from all ppAnswers history (stored in ppSessionHistory)
+  const stepTotals = stepNames.map(() => ({ sum: 0, count: 0 }));
+  ppSessionHistory.forEach(session => {
+    (session.answers || []).forEach(a => {
+      const idx = stepNames.indexOf(a.step);
+      if (idx !== -1 && !a.skipped) {
+        stepTotals[idx].sum += a.score;
+        stepTotals[idx].count++;
+      }
+    });
+  });
+
+  const avgs = stepTotals.map(s => s.count ? Math.round((s.sum / s.count) * 50) : 0); // out of 100
+  const hasData = avgs.some(v => v > 0);
+
+  if (!hasData) {
+    emptyEl.style.display = 'block';
+    ctx.canvas.style.display = 'none';
+    return;
+  }
+  emptyEl.style.display = 'none';
+  ctx.canvas.style.display = 'block';
+
+  chartSteps = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: stepNames,
+      datasets: [{
+        label: 'Avg Score %',
+        data: avgs,
+        backgroundColor: 'rgba(223,200,74,0.2)',
+        borderColor: '#dfc84a',
+        borderWidth: 2,
+        pointBackgroundColor: '#1a1a18',
+        pointRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        r: {
+          min: 0, max: 100,
+          ticks: { callback: v => v + '%', font: { size: 9 } },
+          pointLabels: { font: { size: 11 } }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+// ── Hook showPage to render progress charts on visit ───
+const _origShowPage = showPage;
+function showPage(name) {
+  _origShowPage(name);
+  if (name === 'progress') updateProgressPage();
+}
+
+// ── Record a completed PEEZL session ──────────────────
+function recordPPSession(score, total, poemA, poemB, answers) {
+  ppSessionHistory.push({
+    score,
+    total,
+    date: new Date().toISOString(),
+    poems: poemA && poemB ? poemA.title.split(' ')[0] + ' & ' + poemB.title.split(' ')[0] : '',
+    answers: answers || [],
+  });
+}
+
 // ─── INIT ──────────────────────────────────────────────
 buildPoemsGrid();
 buildFCCards();
@@ -2955,6 +3505,7 @@ buildGuide();
 buildPPSteps();
 renderPPSetup();
 updateXPBar();
+applyProfileToUI();
 </script>
 </body>
 </html>
