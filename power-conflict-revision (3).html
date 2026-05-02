@@ -1,0 +1,2920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power & Conflict — GCSE Poetry Revision</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #1a1a18;
+  --blue: #a8c5c8;
+  --yellow: #dfc84a;
+  --grey: #ccccc6;
+  --cream: #faf6ec;
+  --red: #c94b35;
+  --dark-red: #a33a28;
+  --ink: #1a1a18;
+  --paper: #faf6ec;
+  --mid: #e8e4d8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Libre Baskerville', Georgia, serif;
+  min-height: 100vh;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ─── NAV ─────────────────────────────────────────── */
+nav {
+  background: var(--black);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid var(--yellow);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--yellow);
+  padding: 12px 20px;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  border-right: 1px solid #333;
+  flex-shrink: 0;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--grey);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  border-right: 1px solid #2a2a2a;
+}
+.nav-btn:hover, .nav-btn.active {
+  color: var(--yellow);
+  background: rgba(223,200,74,0.08);
+}
+
+/* ─── PAGE SYSTEM ─────────────────────────────────── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ─── HERO ────────────────────────────────────────── */
+.hero {
+  background: var(--black);
+  color: var(--cream);
+  padding: 60px 40px 50px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--yellow);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 38px,
+    rgba(255,255,255,0.015) 38px,
+    rgba(255,255,255,0.015) 39px
+  );
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--yellow);
+}
+.hero-sub {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: var(--grey);
+  max-width: 500px;
+  line-height: 1.6;
+}
+.hero-rule {
+  width: 60px;
+  height: 3px;
+  background: var(--red);
+  margin: 24px 0;
+}
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.stat { }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--yellow);
+  line-height: 1;
+}
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-top: 4px;
+}
+
+/* ─── SECTION HEADING ─────────────────────────────── */
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--black);
+}
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+.section-heading span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+/* ─── POEMS GRID ──────────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 48px 32px; }
+
+.poems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2px;
+  background: var(--black);
+  border: 2px solid var(--black);
+}
+.poem-card {
+  background: var(--paper);
+  padding: 28px 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.poem-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--yellow);
+  transform: scaleY(0);
+  transition: transform 0.2s;
+  transform-origin: bottom;
+}
+.poem-card:hover { background: var(--mid); }
+.poem-card:hover::before { transform: scaleY(1); }
+.poem-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+.poem-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.poem-author {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: #666;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.poem-theme-pill {
+  display: inline-block;
+  background: var(--blue);
+  color: var(--black);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 0;
+}
+
+/* ─── POEM DETAIL PAGE ────────────────────────────── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  margin-bottom: 32px;
+  transition: gap 0.2s;
+}
+.back-btn:hover { gap: 12px; }
+
+.poem-detail-header {
+  background: var(--black);
+  color: var(--cream);
+  padding: 48px 40px;
+  margin-bottom: 40px;
+  position: relative;
+}
+.poem-detail-header::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 0; right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, var(--yellow) 0, var(--yellow) 20px, var(--red) 20px, var(--red) 40px, var(--blue) 40px, var(--blue) 60px);
+}
+.poem-detail-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--yellow);
+  margin-bottom: 8px;
+}
+.poem-detail-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.poem-detail-author {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1rem;
+  color: var(--grey);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+@media (max-width: 600px) { .detail-grid { grid-template-columns: 1fr; } }
+
+.detail-card {
+  background: white;
+  border: 2px solid var(--black);
+  padding: 24px;
+}
+.detail-card-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.detail-card-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--grey);
+}
+.detail-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.quotes-list { list-style: none; }
+.quotes-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--grey);
+  font-style: italic;
+  font-size: 0.95rem;
+  position: relative;
+  padding-left: 20px;
+}
+.quotes-list li::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  color: var(--yellow);
+  font-size: 1.5rem;
+  line-height: 1;
+  font-family: 'Playfair Display', serif;
+}
+.quotes-list li:last-child { border-bottom: none; }
+
+.poet-banner {
+  background: var(--blue);
+  border: 2px solid var(--black);
+  padding: 20px 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.poet-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.poet-text { font-size: 0.9rem; line-height: 1.6; }
+
+/* ─── FLASHCARDS ──────────────────────────────────── */
+.flashcard-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  align-items: center;
+}
+.fc-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: 2px solid var(--black);
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.fc-btn:hover, .fc-btn.active { background: var(--black); color: var(--cream); }
+.fc-btn.primary { background: var(--black); color: var(--cream); }
+.fc-btn.primary:hover { background: var(--red); border-color: var(--red); }
+
+.progress-bar-wrap {
+  background: var(--mid);
+  border: 2px solid var(--black);
+  height: 12px;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--yellow),
+    var(--yellow) 8px,
+    var(--black) 8px,
+    var(--black) 10px
+  );
+  transition: width 0.4s ease;
+  min-width: 0;
+}
+.progress-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: #555;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fc-scene {
+  perspective: 1000px;
+  height: 320px;
+  max-width: 680px;
+  margin: 0 auto 32px;
+  cursor: pointer;
+}
+.fc-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+}
+.fc-card.flipped { transform: rotateY(180deg); }
+.fc-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border: 2px solid var(--black);
+  text-align: center;
+}
+.fc-front {
+  background: var(--black);
+  color: var(--cream);
+}
+.fc-front .fc-hint {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 20px;
+}
+.fc-front .fc-q {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-style: italic;
+  line-height: 1.4;
+}
+.fc-back {
+  background: var(--cream);
+  transform: rotateY(180deg);
+}
+.fc-back .fc-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.fc-back .fc-a {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.fc-back .fc-poem {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: #666;
+}
+.fc-tap-hint {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #999;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.fc-rating {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.rate-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.rate-btn.know { border-color: #2d7a4f; color: #2d7a4f; background: none; }
+.rate-btn.know:hover { background: #2d7a4f; color: white; }
+.rate-btn.unsure { border-color: var(--yellow); color: #8a7a20; background: none; }
+.rate-btn.unsure:hover { background: var(--yellow); color: var(--black); }
+.rate-btn.nope { border-color: var(--red); color: var(--red); background: none; }
+.rate-btn.nope:hover { background: var(--red); color: white; }
+
+.fc-stats-row {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 32px;
+  border: 2px solid var(--black);
+  overflow: hidden;
+}
+.fc-stat {
+  flex: 1;
+  padding: 14px 8px;
+  text-align: center;
+}
+.fc-stat:nth-child(1) { background: #e8f5ee; }
+.fc-stat:nth-child(2) { background: #fffbe6; }
+.fc-stat:nth-child(3) { background: #fdecea; }
+.fc-stat:nth-child(4) { background: var(--mid); }
+.fc-stat-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.fc-stat-l {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* ─── PARAGRAPH PRACTICE ──────────────────────────── */
+.pp-step-indicator {
+  display: flex;
+  gap: 0;
+  border: 2px solid var(--black);
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.pp-step {
+  flex: 1;
+  padding: 12px 8px;
+  text-align: center;
+  background: var(--mid);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-right: 1px solid var(--black);
+  transition: all 0.2s;
+  color: #888;
+}
+.pp-step:last-child { border-right: none; }
+.pp-step.done { background: var(--yellow); color: var(--black); font-weight: 500; }
+.pp-step.current { background: var(--black); color: var(--cream); }
+
+.pp-card {
+  background: white;
+  border: 2px solid var(--black);
+  padding: 36px;
+  margin-bottom: 24px;
+  max-width: 760px;
+}
+.pp-step-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--yellow);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.pp-step-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+.pp-question { font-size: 1rem; line-height: 1.7; margin-bottom: 20px; }
+.pp-starter {
+  background: var(--blue);
+  padding: 14px 18px;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--black);
+}
+.pp-starter strong {
+  font-family: 'DM Mono', monospace;
+  font-style: normal;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--black);
+}
+.pp-textarea {
+  width: 100%;
+  min-height: 100px;
+  border: 2px solid var(--grey);
+  padding: 14px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  resize: vertical;
+  background: var(--paper);
+  transition: border-color 0.2s;
+  color: var(--ink);
+}
+.pp-textarea:focus { outline: none; border-color: var(--black); }
+
+.pp-feedback {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-left: 4px solid;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  display: none;
+}
+.pp-feedback.good { border-color: #2d7a4f; background: #e8f5ee; }
+.pp-feedback.ok { border-color: var(--yellow); background: #fffbe6; }
+.pp-feedback.show { display: block; }
+
+.pp-nav { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.pp-score-board {
+  background: var(--black);
+  color: var(--cream);
+  padding: 40px;
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.pp-score-board h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.pp-score-big {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--yellow);
+  line-height: 1;
+}
+.pp-grade {
+  font-family: 'DM Mono', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: var(--grey);
+  margin-bottom: 20px;
+}
+
+/* ─── ESSAY GUIDE PAGE ────────────────────────────── */
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.guide-card {
+  border: 2px solid var(--black);
+  overflow: hidden;
+}
+.guide-card-head {
+  padding: 16px 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid var(--black);
+}
+.guide-letter {
+  font-size: 2rem;
+  font-weight: 900;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid;
+}
+.guide-card-body {
+  padding: 20px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.guide-starters { list-style: none; margin-top: 12px; }
+.guide-starters li {
+  padding: 6px 0;
+  border-bottom: 1px dotted var(--grey);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #444;
+}
+.guide-starters li:last-child { border-bottom: none; }
+
+.themes-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid var(--black);
+  margin-bottom: 32px;
+}
+.themes-table th {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  text-align: left;
+}
+.themes-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--grey);
+  font-size: 0.88rem;
+  vertical-align: top;
+}
+.themes-table tr:nth-child(even) td { background: var(--mid); }
+.themes-table tr:hover td { background: #faf0d8; }
+
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.vocab-tag {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 10px 14px;
+  text-align: center;
+  border: 2px solid var(--black);
+  transition: all 0.15s;
+  cursor: default;
+}
+.vocab-tag:nth-child(even) { background: var(--red); }
+.vocab-tag:nth-child(3n) { background: var(--blue); color: var(--black); }
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--grey);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.checklist-item:last-child { border-bottom: none; }
+.check-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--black);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  transition: all 0.15s;
+  font-size: 0.8rem;
+}
+.checklist-item.checked .check-box {
+  background: var(--black);
+  color: var(--yellow);
+}
+
+/* ─── AI LOADING SPINNER ──────────────────────────── */
+.pp-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #333;
+  border-top-color: var(--yellow);
+  border-radius: 50%;
+  animation: pp-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes pp-spin { to { transform: rotate(360deg); } }
+
+/* ─── XP / LEVEL BAR ──────────────────────────────── */
+#xp-bar-container {
+  background: var(--black);
+  border-bottom: 2px solid #2a2a2a;
+  padding: 6px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 48px; /* below nav */
+  z-index: 99;
+}
+.xp-level-badge {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: var(--yellow);
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.xp-label-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 2px;
+}
+.xp-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #2a2a2a;
+  border: 1px solid #333;
+  position: relative;
+  cursor: pointer;
+  overflow: visible;
+}
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--yellow) 0%, #f0a820 100%);
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+}
+.xp-bar-fill::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: white;
+  opacity: 0.6;
+  border-radius: 0 2px 2px 0;
+}
+.xp-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--black);
+  border: 1px solid var(--yellow);
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 200;
+}
+.xp-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--yellow);
+}
+.xp-bar-track:hover .xp-tooltip { opacity: 1; }
+.xp-bar-numbers {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  color: #555;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.xp-next-level {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #444;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ─── XP TOAST ────────────────────────────────────── */
+.xp-toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: var(--black);
+  border: 2px solid var(--yellow);
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 12px 20px;
+  z-index: 1000;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  max-width: 260px;
+  line-height: 1.5;
+}
+.xp-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+.xp-toast-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--yellow);
+  display: block;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.xp-toast-level-up {
+  border-color: #f0a820;
+  background: #1a1500;
+}
+
+/* ─── SAVE / LOAD BAR ─────────────────────────────── */
+#save-bar {
+  background: #111;
+  border-bottom: 1px solid #222;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #555;
+  flex-wrap: wrap;
+}
+.save-btn {
+  background: none;
+  border: 1px solid #2a2a2a;
+  color: #777;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  line-height: 1.8;
+}
+.save-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+.save-btn.primary-save { border-color: #3a3a2a; color: #aaa890; }
+.save-btn.primary-save:hover { background: var(--yellow); border-color: var(--yellow); color: var(--black); }
+#save-status {
+  font-size: 0.58rem;
+  color: #3a3a3a;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  max-width: 480px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+#save-status.ok  { color: #2d7a4f; }
+#save-status.err { color: var(--red); }
+
+/* ─── LEVEL UP OVERLAY ────────────────────────────── */
+#levelup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+#levelup-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.levelup-card {
+  background: var(--black);
+  border: 3px solid var(--yellow);
+  padding: 48px 56px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+#levelup-overlay.show .levelup-card { transform: scale(1); }
+.levelup-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--yellow);
+  line-height: 1;
+}
+.levelup-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 8px;
+}
+.levelup-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 24px;
+}
+.levelup-close {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 28px;
+  border: 2px solid var(--yellow);
+  background: none;
+  color: var(--yellow);
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-top: 8px;
+}
+.levelup-close:hover { background: var(--yellow); color: var(--black); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">P&amp;C Revision</div>
+    <button class="nav-btn active" onclick="showPage('home')">Home</button>
+    <button class="nav-btn" onclick="showPage('poems')">All Poems</button>
+    <button class="nav-btn" onclick="showPage('flashcards')">Flashcards</button>
+    <button class="nav-btn" onclick="showPage('practice')">PEEZL Practice</button>
+    <button class="nav-btn" onclick="showPage('guide')">Essay Guide</button>
+  </div>
+</nav>
+
+<!-- ═══ SAVE/LOAD BAR ═══ -->
+<div id="save-bar">
+  <span style="color:#444;letter-spacing:0.15em;">PROGRESS</span>
+  <button class="save-btn primary-save" onclick="saveProgress()" title="Download your progress as a .json file">&#x2B07; Save</button>
+  <label class="save-btn" title="Upload a previously saved .json file" style="cursor:pointer;">
+    &#x2B06; Load
+    <input type="file" id="load-file-input" accept=".json" style="display:none;" onchange="loadProgressFile(event)">
+  </label>
+  <div id="save-status-wrap" style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+    <span id="save-status">No save loaded — use Save to download your progress</span>
+  </div>
+</div>
+
+<!-- ═══ XP BAR ═══ -->
+<div id="xp-bar-container">
+  <div>
+    <div class="xp-label-text">Level</div>
+    <div class="xp-level-badge" id="xp-level-badge">1</div>
+  </div>
+  <div style="flex:1;min-width:0;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;">
+      <div class="xp-label-text" id="xp-level-name-label">Novice Reader</div>
+      <div class="xp-bar-numbers" id="xp-bar-numbers">0 / 100 XP</div>
+    </div>
+    <div class="xp-bar-track" id="xp-bar-track">
+      <div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div>
+      <div class="xp-tooltip" id="xp-tooltip">Loading...</div>
+    </div>
+  </div>
+  <div class="xp-next-level" id="xp-next-level-label">Next: Attentive Scholar</div>
+</div>
+
+<!-- ═══ XP TOAST ═══ -->
+<div class="xp-toast" id="xp-toast">
+  <span class="xp-toast-amount" id="xp-toast-amount">+25 XP</span>
+  <span id="xp-toast-reason">Card answered</span>
+</div>
+
+<!-- ═══ LEVEL UP OVERLAY ═══ -->
+<div id="levelup-overlay">
+  <div class="levelup-card">
+    <div class="levelup-title">Level Up!</div>
+    <div class="levelup-num" id="levelup-num">2</div>
+    <div class="levelup-name" id="levelup-name">Attentive Scholar</div>
+    <p style="font-family:'Libre Baskerville',serif;font-size:0.85rem;color:var(--grey);line-height:1.6;margin-bottom:24px;" id="levelup-desc">Keep revising to reach the next rank.</p>
+    <button class="levelup-close" onclick="closeLevelUp()">Continue Revising &rarr;</button>
+  </div>
+</div>
+
+<!-- ═══════════ HOME PAGE ═══════════ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-eyebrow">AQA GCSE English Literature — Anthology</div>
+    <h1>Power<br>&amp; <em>Conflict</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Your complete revision companion. Explore all 15 poems, test yourself with flashcards, and master the art of the comparative essay.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">15</div>
+        <div class="stat-label">Poems</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">45+</div>
+        <div class="stat-label">Key Quotes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">PEEZL Steps</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-heading">
+      <h2>Quick Navigation</h2>
+      <span>Get Started</span>
+    </div>
+    <div class="poems-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 2px;">
+      <div class="poem-card" onclick="showPage('poems')">
+        <div class="poem-num">01 — 15</div>
+        <div class="poem-title">All Poems</div>
+        <div class="poem-author">Complete anthology</div>
+        <span class="poem-theme-pill">Browse →</span>
+      </div>
+      <div class="poem-card" onclick="showPage('flashcards')">
+        <div class="poem-num">45+</div>
+        <div class="poem-title">Flashcard Revision</div>
+        <div class="poem-author">Quotes, themes & context</div>
+        <span class="poem-theme-pill" style="background:var(--yellow)">Test Yourself →</span>
+      </div>
+      <div class="poem-card" onclick="showPage('practice')">
+        <div class="poem-num">PEEZL</div>
+        <div class="poem-title">Paragraph Practice</div>
+        <div class="poem-author">Structured writing</div>
+        <span class="poem-theme-pill" style="background:var(--red);color:white">Practice →</span>
+      </div>
+      <div class="poem-card" onclick="showPage('guide')">
+        <div class="poem-num">Grade 9</div>
+        <div class="poem-title">Essay Guide</div>
+        <div class="poem-author">Structure & sentence starters</div>
+        <span class="poem-theme-pill" style="background:var(--grey)">Read →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ POEMS LIST ═══════════ -->
+<div id="page-poems" class="page">
+  <div class="container">
+    <div class="section-heading">
+      <h2>All Poems</h2>
+      <span>Click to explore</span>
+    </div>
+    <div class="poems-grid" id="poems-grid"></div>
+  </div>
+</div>
+
+<!-- ═══════════ POEM DETAIL ═══════════ -->
+<div id="page-poem-detail" class="page">
+  <div class="container">
+    <button class="back-btn" onclick="showPage('poems')">← Back to all poems</button>
+    <div id="poem-detail-content"></div>
+  </div>
+</div>
+
+<!-- ═══════════ FLASHCARDS ═══════════ -->
+<div id="page-flashcards" class="page">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Flashcard Revision</h2>
+      <span>Test your knowledge</span>
+    </div>
+
+    <!-- Stats row -->
+    <div class="fc-stats-row">
+      <div class="fc-stat">
+        <div class="fc-stat-n" id="fc-know-count">0</div>
+        <div class="fc-stat-l">Mastered ✓</div>
+      </div>
+      <div class="fc-stat">
+        <div class="fc-stat-n" id="fc-unsure-count">0</div>
+        <div class="fc-stat-l">Learning ~</div>
+      </div>
+      <div class="fc-stat">
+        <div class="fc-stat-n" id="fc-nope-count">0</div>
+        <div class="fc-stat-l">Struggling ✗</div>
+      </div>
+      <div class="fc-stat" style="background:var(--mid);">
+        <div class="fc-stat-n" id="fc-streak-count">0</div>
+        <div class="fc-stat-l">Streak 🔥</div>
+      </div>
+    </div>
+
+    <div class="progress-bar-wrap" style="margin-top:16px;">
+      <div class="progress-bar-fill" id="fc-progress" style="width:0%"></div>
+    </div>
+    <div class="progress-label">
+      <span id="fc-progress-text">0 of 0 mastered</span>
+      <span id="fc-pct">0%</span>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:2px;border:2px solid var(--black);margin-bottom:12px;overflow:hidden;">
+      <div style="background:var(--black);color:var(--cream);font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 14px;align-self:stretch;display:flex;align-items:center;flex-shrink:0;">Mode</div>
+      <button class="fc-btn active" id="fc-mode-smart" onclick="setFCMode('smart')" style="border:none;border-right:1px solid #ddd;">Smart (Spaced Rep)</button>
+      <button class="fc-btn" id="fc-mode-seq" onclick="setFCMode('sequential')" style="border:none;border-right:1px solid #ddd;">Sequential</button>
+      <button class="fc-btn" id="fc-mode-weak" onclick="setFCMode('weakest')" style="border:none;">Weakest First</button>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:2px;border:2px solid var(--black);margin-bottom:16px;overflow:hidden;">
+      <div style="background:var(--black);color:var(--cream);font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 14px;align-self:stretch;display:flex;align-items:center;flex-shrink:0;">Type</div>
+      <button class="fc-btn active" id="fc-type-all" onclick="setFCType('all')" style="border:none;border-right:1px solid #ddd;">All</button>
+      <button class="fc-btn" id="fc-type-quote" onclick="setFCType('quote')" style="border:none;border-right:1px solid #ddd;">Quotes</button>
+      <button class="fc-btn" id="fc-type-theme" onclick="setFCType('theme')" style="border:none;border-right:1px solid #ddd;">Themes</button>
+      <button class="fc-btn" id="fc-type-context" onclick="setFCType('context')" style="border:none;">Context</button>
+    </div>
+
+    <div class="flashcard-controls" style="margin-bottom:20px;">
+      <button class="fc-btn primary" onclick="resetFC()">Reset All Progress</button>
+      <button class="fc-btn" onclick="fcSkipCard()">Skip this card →</button>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <div class="fc-tap-hint" style="margin-bottom:0;" id="fc-card-counter">Card 1</div>
+      <div id="fc-difficulty-badge" style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--grey);color:#666;"></div>
+    </div>
+
+    <div class="fc-scene" onclick="flipCard()">
+      <div class="fc-card" id="fc-card">
+        <div class="fc-face fc-front">
+          <div class="fc-hint" id="fc-front-hint">Tap to reveal</div>
+          <div class="fc-q" id="fc-question">Loading...</div>
+        </div>
+        <div class="fc-face fc-back">
+          <div class="fc-tag" id="fc-type-tag">Quote</div>
+          <div class="fc-a" id="fc-answer"></div>
+          <div class="fc-poem" id="fc-poem-label"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fc-rating" id="fc-rating" style="display:none;">
+      <button class="rate-btn nope" onclick="rateCard(1)">✗ Struggling</button>
+      <button class="rate-btn unsure" onclick="rateCard(3)">~ Getting there</button>
+      <button class="rate-btn know" onclick="rateCard(5)">✓ Got it</button>
+    </div>
+
+    <div style="margin-top:32px;">
+      <div class="section-heading" style="margin-bottom:16px;">
+        <h2 style="font-size:1rem;">Poem Mastery Heatmap</h2>
+        <span>per poem</span>
+      </div>
+      <div id="fc-heatmap" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:2px;background:var(--black);border:2px solid var(--black);"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PARAGRAPH PRACTICE ═══════════ -->
+<div id="page-practice" class="page">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Paragraph Practice</h2>
+      <span>PEEZL Structure</span>
+    </div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="pp-progress" style="width:0%"></div>
+    </div>
+    <div class="progress-label">
+      <span id="pp-progress-text">Step 1 of 5</span>
+      <span id="pp-score-label">Score: 0</span>
+    </div>
+
+    <div class="pp-step-indicator" id="pp-steps"></div>
+
+    <div id="pp-content"></div>
+  </div>
+</div>
+
+<!-- ═══════════ ESSAY GUIDE ═══════════ -->
+<div id="page-guide" class="page">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Essay Guide</h2>
+      <span>Grade 9 Method</span>
+    </div>
+
+    <!-- PEEZL -->
+    <div class="section-heading" style="margin-top:0;">
+      <h2 style="font-size:1.3rem;">The PEEZL Paragraph</h2>
+    </div>
+    <div class="guide-grid" id="peace-grid"></div>
+
+    <!-- Themes comparison -->
+    <div class="section-heading">
+      <h2 style="font-size:1.3rem;">Themes Comparison</h2>
+      <span>Choose your poems</span>
+    </div>
+    <table class="themes-table">
+      <thead><tr><th>Theme</th><th>Best Comparison Poems</th></tr></thead>
+      <tbody>
+        <tr><td>Power of humans</td><td>Ozymandias, My Last Duchess, London</td></tr>
+        <tr><td>Power of nature</td><td>The Prelude, Storm on the Island</td></tr>
+        <tr><td>War suffering</td><td>Exposure, Remains, Bayonet Charge</td></tr>
+        <tr><td>Memory &amp; loss</td><td>Poppies, Kamikaze, War Photographer</td></tr>
+        <tr><td>Identity</td><td>Checking Out Me History, The Émigrée</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Vocabulary -->
+    <div class="section-heading">
+      <h2 style="font-size:1.3rem;">Grade 9 Vocabulary</h2>
+      <span>Replace "shows"</span>
+    </div>
+    <div class="vocab-grid" id="vocab-grid"></div>
+
+    <!-- Exam checklist -->
+    <div class="section-heading">
+      <h2 style="font-size:1.3rem;">Exam Night Checklist</h2>
+      <span>Click to tick off</span>
+    </div>
+    <div id="checklist" style="max-width:680px;"></div>
+
+    <!-- Time plan -->
+    <div class="section-heading" style="margin-top:48px;">
+      <h2 style="font-size:1.3rem;">30-Minute Exam Plan</h2>
+    </div>
+    <div class="guide-grid" style="max-width:680px;grid-template-columns:repeat(3,1fr);">
+      <div class="guide-card">
+        <div class="guide-card-head" style="background:var(--blue);">
+          <div class="guide-letter" style="border-color:var(--black);">5'</div> Plan
+        </div>
+        <div class="guide-card-body">Choose comparison poem &amp; plan 3 quotes per poem. Underline the theme keyword.</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-head" style="background:var(--yellow);">
+          <div class="guide-letter" style="border-color:var(--black);">20'</div> Write
+        </div>
+        <div class="guide-card-body">Intro + 3 PEACE paragraphs + conclusion. Compare in every paragraph.</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-head" style="background:var(--red);color:white;">
+          <div class="guide-letter" style="border-color:white;color:white;">5'</div> <span style="color:white;">Check</span>
+        </div>
+        <div class="guide-card-body">Upgrade vocabulary. Add one more comparison phrase per paragraph.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── DATA ─────────────────────────────────────────────
+const poems = [
+  { id: 0, title: "Ozymandias", author: "Percy Bysshe Shelley", theme: "Temporary nature of power & human arrogance", quotes: ['"Look on my Works, ye Mighty, and despair!"', '"Sneer of cold command"', '"Nothing beside remains"'], poet: "Shelley was a Romantic poet who criticised political power and believed rulers were often corrupt." },
+  { id: 1, title: "London", author: "William Blake", theme: "Social injustice and abuse of power over ordinary people", quotes: ['"Mind-forg\'d manacles"', '"Marks of weakness, marks of woe"', '"Runs in blood down Palace walls"'], poet: "Blake was a Romantic writer who challenged authority and exposed inequality in industrial London." },
+  { id: 2, title: "The Prelude (Stealing the Boat)", author: "William Wordsworth", theme: "The power of nature over humanity", quotes: ['"One summer evening (led by her)"', '"A huge peak, black and huge"', '"Troubled pleasure"'], poet: "Wordsworth was a Romantic poet who explored nature, memory and personal growth." },
+  { id: 3, title: "My Last Duchess", author: "Robert Browning", theme: "Power, control and jealousy in relationships", quotes: ['"I gave commands; / Then all smiles stopped together"', '"That\'s my last Duchess painted on the wall"', '"Too soon made glad"'], poet: "Browning specialised in dramatic monologues revealing the psychology of powerful individuals." },
+  { id: 4, title: "The Charge of the Light Brigade", author: "Alfred Lord Tennyson", theme: "Heroism and sacrifice in war", quotes: ['"Into the valley of Death"', '"Theirs not to reason why"', '"Honour the Light Brigade"'], poet: "Tennyson was Poet Laureate who often wrote patriotic poetry celebrating soldiers." },
+  { id: 5, title: "Exposure", author: "Wilfred Owen", theme: "The harsh reality and futility of war", quotes: ['"Our brains ache"', '"Merciless iced east winds that knive us"', '"But nothing happens"'], poet: "Owen was a WWI soldier whose poetry exposed the suffering and truth of trench warfare." },
+  { id: 6, title: "Storm on the Island", author: "Seamus Heaney", theme: "The overwhelming power of nature", quotes: ['"We are prepared"', '"Exploding comfortably"', '"It is a huge nothing that we fear"'], poet: "Heaney often wrote about rural life and conflict inspired by growing up in Ireland." },
+  { id: 7, title: "Bayonet Charge", author: "Ted Hughes", theme: "Fear, confusion and instinct in war", quotes: ['"Suddenly he awoke and was running"', '"Bullets smacking the belly out of the air"', '"His terror\'s touchy dynamite"'], poet: "Hughes explored violence, nature and raw human instinct in his poetry." },
+  { id: 8, title: "Remains", author: "Simon Armitage", theme: "Psychological effects of war and guilt", quotes: ['"Probably armed, possibly not"', '"His bloody life in my bloody hands"', '"The drink and drugs won\'t flush him out"'], poet: "Armitage writes contemporary poetry often focusing on real voices and modern experiences." },
+  { id: 9, title: "Poppies", author: "Jane Weir", theme: "Personal loss and the impact of war on families", quotes: ['"Spasms of paper red"', '"Released a song bird from its cage"', '"The world overflowing like a treasure chest"'], poet: "Weir explores memory, motherhood and emotional responses to conflict." },
+  { id: 10, title: "War Photographer", author: "Carol Ann Duffy", theme: "Emotional impact of war and media detachment", quotes: ['"Spools of suffering set out in ordered rows"', '"A hundred agonies in black-and-white"', '"The reader\'s eyeballs prick with tears"'], poet: "Duffy, a former Poet Laureate, often examines human suffering and social responsibility." },
+  { id: 11, title: "Tissue", author: "Imtiaz Dharker", theme: "Fragility of human power and importance of humanity", quotes: ['"Paper that lets the light shine through"', '"Maps too"', '"Turned into your skin"'], poet: "Dharker writes about identity, religion and the structures humans create." },
+  { id: 12, title: "The Émigrée", author: "Carol Rumens", theme: "Memory, identity and belonging", quotes: ['"There once was a country"', '"My city hides behind me"', '"They accuse me of being dark"'], poet: "Rumens focuses on displacement, exile and political conflict." },
+  { id: 13, title: "Kamikaze", author: "Beatrice Garland", theme: "Conflict between duty, honour and family", quotes: ['"A one-way journey into history"', '"Little fishing boats strung out like bunting"', '"He must have wondered which had been the better way to die"'], poet: "Garland writes narrative poems exploring moral decisions and human consequences of war." },
+  { id: 14, title: "Checking Out Me History", author: "John Agard", theme: "Identity, racism and reclaiming cultural history", quotes: ['"Dem tell me"', '"Bandage up me eye with me own history"', '"I carving out me identity"'], poet: "Agard challenges Eurocentric education and celebrates Caribbean heritage and identity." },
+];
+
+const peaceData = [
+  { letter: "P", name: "Point", color: "var(--yellow)", desc: "Make a clear argument or topic sentence that directly answers the question.", starters: ["Both poets present…", "A key idea in both poems is…", "The poets explore the idea that…", "Both [poet] and [poet] suggest…"] },
+  { letter: "E", name: "Evidence", color: "var(--blue)", desc: "Support your point with a relevant quote or textual reference, embedded naturally.", starters: ["This is shown when…", "For example, in the line…", "The poet writes…", "Evidence of this can be seen when…"] },
+  { letter: "E", name: "Explain / Technique", color: "var(--grey)", desc: "Explain the effect of the quote and identify the technique used — metaphor, simile, irony, etc.", starters: ["Here, [poet] uses a metaphor to…", "The use of [technique] suggests…", "This simile/irony/imagery creates…", "This technique emphasises…"] },
+  { letter: "Z", name: "Zoom", color: "var(--red)", desc: "Zoom in on a specific word, phrase, or device within the quote to analyse deeper meaning.", starters: ["The word \"___\" suggests…", "Zooming in on \"___\", we see…", "The connotations of \"___\" imply…", "The verb/adjective \"___\" emphasises…"] },
+  { letter: "L", name: "Link", color: "var(--black)", desc: "Link the paragraph back to the question, your thesis, or the author's intention.", starters: ["This reveals the poet's message that…", "Ultimately, both poets suggest…", "This links to the question because…", "The poet's intention here is to…"] },
+];
+
+const vocabWords = ["presents","illustrates","emphasises","exposes","challenges","critiques","conveys","symbolises","explores","suggests","implies","portrays","examines","reveals","demonstrates"];
+
+const checklistItems = [
+  "I know the main theme of all 15 poems",
+  "I have at least 3 quotes memorised per poem",
+  "I know one sentence about each poet's context",
+  "I can use the PEEZL paragraph structure",
+  "I know which poems compare on each major theme",
+  "I can write a clear introduction naming both poems",
+  "I compare throughout — not poem A then poem B",
+  "I analyse individual words not just whole quotes",
+  "I use a range of comparison connectives",
+  "I have practised writing under timed conditions",
+];
+
+// ─── PAGE SYSTEM ──────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  btns.forEach(b => { if(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+name+"'")) b.classList.add('active'); });
+  window.scrollTo(0,0);
+}
+
+// ─── BUILD POEMS GRID ──────────────────────────────────
+function buildPoemsGrid() {
+  const grid = document.getElementById('poems-grid');
+  grid.innerHTML = poems.map((p,i) => `
+    <div class="poem-card" onclick="showPoemDetail(${i})">
+      <div class="poem-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="poem-title">${p.title}</div>
+      <div class="poem-author">— ${p.author}</div>
+      <span class="poem-theme-pill">${p.theme.split(' ').slice(0,4).join(' ')}…</span>
+    </div>
+  `).join('');
+}
+
+function showPoemDetail(i) {
+  const p = poems[i];
+  const html = `
+    <div class="poem-detail-header">
+      <div class="poem-detail-num">Poem ${String(i+1).padStart(2,'0')} of 15</div>
+      <div class="poem-detail-title">${p.title}</div>
+      <div class="poem-detail-author">— ${p.author}</div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-label">Main Theme</div>
+        <p style="font-size:1rem;line-height:1.7;">${p.theme}</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-label">Key Quotes</div>
+        <ul class="quotes-list">
+          ${p.quotes.map(q => `<li>${q}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+    <div class="poet-banner">
+      <div class="poet-icon">📖</div>
+      <div class="poet-text"><strong style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:6px;">About the Poet</strong>${p.poet}</div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      ${i > 0 ? `<button class="fc-btn" onclick="showPoemDetail(${i-1})">← Previous Poem</button>` : ''}
+      ${i < poems.length-1 ? `<button class="fc-btn primary" onclick="showPoemDetail(${i+1})">Next Poem →</button>` : ''}
+    </div>
+  `;
+  document.getElementById('poem-detail-content').innerHTML = html;
+  showPage('poem-detail');
+}
+
+// ═══════════════════════════════════════════════════════
+// FLASHCARD ENGINE — SM-2 Spaced Repetition
+// ═══════════════════════════════════════════════════════
+
+// Each card's SRS record:
+// { easeFactor, interval, repetitions, due, lastRating, timesShown, totalScore }
+// easeFactor starts at 2.5 (SM-2 default)
+// interval = days until next review (simulated as a session counter here)
+// due = session tick at which card is next due
+
+let fcAllCards = [];   // full pool, never filtered
+let fcCards = [];      // active pool after type filter
+let fcIsFlipped = false;
+let fcMode = 'smart';  // 'smart' | 'sequential' | 'weakest'
+let fcTypeFilter = 'all';
+let fcSRS = {};        // id → SRS record
+let fcCurrentCard = null;
+let fcSeqIndex = 0;
+let fcSessionTick = 0; // increments with every card rated
+let fcStreak = 0;
+let fcRecentIds = [];  // last 5 card ids to prevent repeats
+
+function shuffleArray(arr) {
+  // Fisher-Yates
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+function buildFCCards() {
+  fcAllCards = [];
+
+  // Quote cards — 3 per poem = 45
+  poems.forEach(p => {
+    p.quotes.forEach(q => {
+      fcAllCards.push({
+        type: 'quote',
+        question: q,
+        hint: 'Which poem does this quote come from? What is its theme?',
+        answer: p.theme,
+        poem: p.title,
+        author: p.author,
+        id: 'q|' + p.title + '|' + q,
+        poemId: p.id
+      });
+    });
+  });
+
+  // Theme cards — 1 per poem = 15
+  poems.forEach(p => {
+    fcAllCards.push({
+      type: 'theme',
+      question: 'What is the main theme of "' + p.title + '"?',
+      hint: 'Think about what the poet is primarily exploring.',
+      answer: p.theme,
+      poem: p.title,
+      author: p.author,
+      id: 'th|' + p.title,
+      poemId: p.id
+    });
+  });
+
+  // Context cards — 1 per poem = 15
+  poems.forEach(p => {
+    fcAllCards.push({
+      type: 'context',
+      question: 'What do you know about ' + p.author + ' and the context of "' + p.title + '"?',
+      hint: 'Think about who the poet is and why they wrote this poem.',
+      answer: p.poet,
+      poem: p.title,
+      author: p.author,
+      id: 'ctx|' + p.title,
+      poemId: p.id
+    });
+  });
+
+  // Author → poem cards — 1 per poem = 15
+  poems.forEach(p => {
+    fcAllCards.push({
+      type: 'author',
+      question: 'Name a key quote from "' + p.title + '" by ' + p.author + '.',
+      hint: 'Recall one of the three key quotes.',
+      answer: p.quotes.join('\n'),
+      poem: p.title,
+      author: p.author,
+      id: 'au|' + p.title,
+      poemId: p.id
+    });
+  });
+
+  // Initialise SRS records for any new cards
+  fcAllCards.forEach(c => {
+    if (!fcSRS[c.id]) {
+      fcSRS[c.id] = {
+        easeFactor: 2.5,
+        interval: 0,
+        repetitions: 0,
+        due: 0,
+        lastRating: null,
+        timesShown: 0,
+        totalScore: 0
+      };
+    }
+  });
+
+  applyTypeFilter();
+}
+
+function applyTypeFilter() {
+  if (fcTypeFilter === 'all') {
+    fcCards = [...fcAllCards];
+  } else {
+    fcCards = fcAllCards.filter(c => c.type === fcTypeFilter);
+  }
+  fcSeqIndex = 0;
+  fcRecentIds = [];
+  pickNextCard();
+}
+
+// ─── SM-2 ALGORITHM ───────────────────────────────────
+// rating: 1 (fail), 3 (hard), 5 (easy)
+function sm2Update(record, rating) {
+  const r = record;
+  r.timesShown++;
+  r.totalScore += rating;
+  r.lastRating = rating;
+
+  if (rating < 3) {
+    // Failed — reset repetitions, short interval
+    r.repetitions = 0;
+    r.interval = 1;
+  } else {
+    // Passed
+    if (r.repetitions === 0) r.interval = 1;
+    else if (r.repetitions === 1) r.interval = 3;
+    else r.interval = Math.round(r.interval * r.easeFactor);
+    r.repetitions++;
+  }
+
+  // Update ease factor: EF' = EF + (0.1 − (5−q)*(0.08+(5−q)*0.02))
+  r.easeFactor = Math.max(1.3,
+    r.easeFactor + 0.1 - (5 - rating) * (0.08 + (5 - rating) * 0.02)
+  );
+
+  r.due = fcSessionTick + r.interval;
+  return r;
+}
+
+// ─── CARD SELECTION ───────────────────────────────────
+function pickNextCard() {
+  if (!fcCards.length) return;
+
+  let card = null;
+
+  if (fcMode === 'sequential') {
+    card = fcCards[fcSeqIndex % fcCards.length];
+    fcSeqIndex++;
+
+  } else if (fcMode === 'weakest') {
+    // Sort by average score ascending (lowest = weakest)
+    const sorted = [...fcCards].sort((a, b) => {
+      const sa = fcSRS[a.id];
+      const sb = fcSRS[b.id];
+      const avgA = sa.timesShown ? sa.totalScore / sa.timesShown : 0;
+      const avgB = sb.timesShown ? sb.totalScore / sb.timesShown : 0;
+      // Never-seen cards go first
+      if (!sa.timesShown && sb.timesShown) return -1;
+      if (sa.timesShown && !sb.timesShown) return 1;
+      return avgA - avgB;
+    });
+    // Take from top 5 weakest, pick randomly among them to prevent lockout
+    const pool = sorted.slice(0, Math.min(5, sorted.length))
+      .filter(c => !fcRecentIds.includes(c.id));
+    card = pool.length ? pool[Math.floor(Math.random() * pool.length)] : sorted[0];
+
+  } else {
+    // ── SMART MODE: weighted probabilistic selection ──
+
+    // Score each card
+    const now = fcSessionTick;
+    const scored = fcCards.map(c => {
+      const s = fcSRS[c.id];
+      let weight = 1;
+
+      // Never seen → very high priority
+      if (!s.timesShown) { weight = 100; return { c, weight }; }
+
+      // Due or overdue → high priority
+      const overdue = Math.max(0, now - s.due);
+      weight += overdue * 15;
+
+      // Low ease factor → harder card, more priority
+      weight += (2.5 - s.easeFactor) * 20;
+
+      // Low last rating → needs review
+      if (s.lastRating === 1) weight += 40;
+      else if (s.lastRating === 3) weight += 15;
+      else if (s.lastRating === 5) weight = Math.max(1, weight - 10);
+
+      // Penalise recent cards heavily to prevent immediate repeats
+      const recentIndex = fcRecentIds.indexOf(c.id);
+      if (recentIndex !== -1) {
+        const penaltyFactor = [0.01, 0.05, 0.1, 0.2, 0.4][recentIndex] || 0.01;
+        weight *= penaltyFactor;
+      }
+
+      // Add small noise to break ties and add variety
+      weight *= (0.85 + Math.random() * 0.3);
+
+      return { c, weight: Math.max(0.01, weight) };
+    });
+
+    // Weighted random selection
+    const totalWeight = scored.reduce((sum, s) => sum + s.weight, 0);
+    let rand = Math.random() * totalWeight;
+    card = scored[scored.length - 1].c; // fallback
+    for (const s of scored) {
+      rand -= s.weight;
+      if (rand <= 0) { card = s.c; break; }
+    }
+  }
+
+  fcCurrentCard = card;
+  renderFCCard();
+}
+
+function renderFCCard() {
+  const card = fcCurrentCard;
+  if (!card) return;
+  const s = fcSRS[card.id];
+
+  // Front hint varies by type
+  const hints = {
+    quote: 'Identify the poem & theme',
+    theme: 'Recall the main theme',
+    context: 'Recall the poet\'s context',
+    author: 'Recall a key quote'
+  };
+  document.getElementById('fc-front-hint').textContent = hints[card.type] || 'Tap to reveal';
+  document.getElementById('fc-question').textContent = card.question;
+  document.getElementById('fc-answer').textContent = card.answer;
+  document.getElementById('fc-poem-label').textContent = '— ' + card.poem + (card.author ? ' · ' + card.author : '');
+
+  const typeLabels = { quote:'Quote', theme:'Theme', context:'Context', author:'Quote Recall' };
+  document.getElementById('fc-type-tag').textContent = typeLabels[card.type] || card.type;
+
+  // Difficulty badge
+  const badge = document.getElementById('fc-difficulty-badge');
+  if (s.timesShown === 0) {
+    badge.textContent = 'New';
+    badge.style.borderColor = 'var(--blue)';
+    badge.style.color = '#555';
+  } else if (s.easeFactor < 1.7) {
+    badge.textContent = 'Hard';
+    badge.style.borderColor = 'var(--red)';
+    badge.style.color = 'var(--red)';
+  } else if (s.easeFactor < 2.2) {
+    badge.textContent = 'Medium';
+    badge.style.borderColor = 'var(--yellow)';
+    badge.style.color = '#8a7a20';
+  } else {
+    badge.textContent = 'Easy';
+    badge.style.borderColor = '#2d7a4f';
+    badge.style.color = '#2d7a4f';
+  }
+
+  // Card counter
+  const seen = Object.values(fcSRS).filter(r => r.timesShown > 0).length;
+  document.getElementById('fc-card-counter').textContent =
+    'Seen ' + seen + ' of ' + fcAllCards.length + ' cards  ·  Session: card ' + (fcSessionTick + 1);
+
+  // Reset flip state
+  fcIsFlipped = false;
+  const el = document.getElementById('fc-card');
+  el.style.transition = 'none';
+  el.classList.remove('flipped');
+  requestAnimationFrame(() => { el.style.transition = ''; });
+  document.getElementById('fc-rating').style.display = 'none';
+
+  updateFCStats();
+}
+
+function flipCard() {
+  if (fcIsFlipped) return;
+  fcIsFlipped = true;
+  document.getElementById('fc-card').classList.add('flipped');
+  document.getElementById('fc-rating').style.display = 'flex';
+}
+
+function rateCard(rating) {
+  // rating: 1, 3, or 5
+  if (!fcCurrentCard) return;
+  const s = fcSRS[fcCurrentCard.id];
+
+  // Calculate XP BEFORE sm2Update changes the record
+  const xpEarned = calcCardXP(s, rating);
+  const bucket = getDifficultyBucket(s);
+  const diffLabel = bucket === 'new' ? 'new card' : bucket + ' card';
+  const ratingLabel = rating === 5 ? 'got it' : rating === 3 ? 'getting there' : 'keep practising';
+  const streakMsg = fcStreak > 0 && rating === 5 ? ' (+streak)' : '';
+
+  sm2Update(s, rating);
+  fcSessionTick++;
+
+  // Streak
+  if (rating === 5) { fcStreak++; }
+  else { fcStreak = 0; }
+
+  // Award XP
+  awardXP(xpEarned, diffLabel + ' — ' + ratingLabel + streakMsg);
+
+  // Track recent to prevent repeats
+  fcRecentIds.unshift(fcCurrentCard.id);
+  if (fcRecentIds.length > 6) fcRecentIds.pop();
+
+  updateFCStats();
+  updateHeatmap();
+  pickNextCard();
+}
+
+function fcSkipCard() {
+  if (!fcCurrentCard) return;
+  fcRecentIds.unshift(fcCurrentCard.id);
+  if (fcRecentIds.length > 6) fcRecentIds.pop();
+  pickNextCard();
+}
+
+function updateFCStats() {
+  const allRecords = Object.values(fcSRS);
+  const mastered = allRecords.filter(r => r.lastRating === 5 && r.easeFactor >= 2.2).length;
+  const learning = allRecords.filter(r => r.timesShown > 0 && r.lastRating === 3).length;
+  const struggling = allRecords.filter(r => r.timesShown > 0 && r.lastRating === 1).length;
+  const total = fcAllCards.length;
+
+  document.getElementById('fc-know-count').textContent = mastered;
+  document.getElementById('fc-unsure-count').textContent = learning;
+  document.getElementById('fc-nope-count').textContent = struggling;
+  document.getElementById('fc-streak-count').textContent = fcStreak;
+
+  const pct = total ? Math.round(mastered / total * 100) : 0;
+  document.getElementById('fc-progress').style.width = pct + '%';
+  document.getElementById('fc-progress-text').textContent = mastered + ' of ' + total + ' mastered';
+  document.getElementById('fc-pct').textContent = pct + '%';
+}
+
+function setFCMode(mode) {
+  fcMode = mode;
+  ['smart','seq','weak'].forEach(m => {
+    const el = document.getElementById('fc-mode-' + m);
+    if (el) el.classList.remove('active');
+  });
+  document.getElementById('fc-mode-' + mode).classList.add('active');
+  fcRecentIds = [];
+  fcSeqIndex = 0;
+  pickNextCard();
+}
+
+function setFCType(type) {
+  fcTypeFilter = type;
+  ['all','quote','theme','context'].forEach(t => {
+    const el = document.getElementById('fc-type-' + t);
+    if (el) el.classList.remove('active');
+  });
+  document.getElementById('fc-type-' + type).classList.add('active');
+  applyTypeFilter();
+}
+
+function resetFC() {
+  fcSRS = {};
+  fcStreak = 0;
+  fcSessionTick = 0;
+  fcRecentIds = [];
+  fcSeqIndex = 0;
+  buildFCCards();
+  updateHeatmap();
+}
+
+// ─── HEATMAP ──────────────────────────────────────────
+function updateHeatmap() {
+  const wrap = document.getElementById('fc-heatmap');
+  if (!wrap) return;
+
+  wrap.innerHTML = poems.map(p => {
+    // Gather all SRS records for this poem
+    const ids = fcAllCards.filter(c => c.poemId === p.id).map(c => c.id);
+    const records = ids.map(id => fcSRS[id]).filter(Boolean);
+    const seen = records.filter(r => r.timesShown > 0);
+    const avgScore = seen.length ? seen.reduce((s, r) => s + (r.totalScore / r.timesShown), 0) / seen.length : 0;
+    const pct = seen.length / records.length;
+
+    // Colour based on average score
+    let bg, label;
+    if (!seen.length) { bg = 'var(--mid)'; label = 'Not started'; }
+    else if (avgScore >= 4.5) { bg = '#c8e6c9'; label = 'Mastered'; }
+    else if (avgScore >= 3.5) { bg = '#dcedc8'; label = 'Strong'; }
+    else if (avgScore >= 2.5) { bg = '#fff9c4'; label = 'Learning'; }
+    else if (avgScore >= 1.5) { bg = '#ffe0b2'; label = 'Weak'; }
+    else { bg = '#ffcdd2'; label = 'Struggling'; }
+
+    const shortTitle = p.title.length > 18 ? p.title.slice(0, 16) + '…' : p.title;
+    return `<div style="background:${bg};padding:10px 12px;cursor:default;" title="${p.title} — ${label}">
+      <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;color:#666;margin-bottom:3px;">${label}</div>
+      <div style="font-family:'Playfair Display',serif;font-size:0.85rem;font-weight:700;line-height:1.2;">${shortTitle}</div>
+      <div style="margin-top:6px;height:3px;background:rgba(0,0,0,0.1);border-radius:0;">
+        <div style="height:100%;width:${Math.round(pct*100)}%;background:rgba(0,0,0,0.3);"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── PARAGRAPH PRACTICE — AI-POWERED ─────────────────
+
+// Rich poem comparison map: which poems pair well and why
+const POEM_COMPARISONS = {
+  0: [ // Ozymandias
+    { id: 1,  theme: "abuse of power", why: "Both critique rulers who dominate ordinary people — Blake through oppressive institutions, Shelley through a tyrant reduced to ruins." },
+    { id: 3,  theme: "power and control", why: "Both present powerful men who believe they are supreme — the Duke controls through fear, Ozymandias through legacy, yet both are ultimately diminished." },
+    { id: 11, theme: "fragility of human power", why: "Dharker and Shelley both argue that human constructs — empires, borders, monuments — are ultimately impermanent." },
+    { id: 14, theme: "identity and power", why: "Both explore how powerful figures try to erase or control others' sense of self and legacy." },
+  ],
+  1: [ // London
+    { id: 0,  theme: "abuse of power", why: "Both poems criticise authority — Shelley uses a historical tyrant, Blake exposes contemporary institutional oppression." },
+    { id: 3,  theme: "power over others", why: "Both present power as corrupt and suffocating — Blake through city-wide systems, Browning through one controlling man." },
+    { id: 5,  theme: "suffering and futility", why: "Both Owen and Blake present victims who cannot escape their suffering, whether from war or systemic poverty." },
+    { id: 14, theme: "identity under oppression", why: "Both challenge systems that silence or harm people — Blake's London citizens and Agard's erased cultural histories." },
+  ],
+  2: [ // The Prelude
+    { id: 6,  theme: "power of nature", why: "Both Wordsworth and Heaney present nature as vast, threatening, and ultimately beyond human understanding." },
+    { id: 7,  theme: "fear and nature's force", why: "Both present a moment of visceral, instinctive fear — Hughes in battle, Wordsworth confronted by the mountain." },
+    { id: 0,  theme: "human arrogance vs. power", why: "Both explore how human pride is overwhelmed by a greater force — Shelley by time, Wordsworth by nature itself." },
+  ],
+  3: [ // My Last Duchess
+    { id: 0,  theme: "arrogance of power", why: "Both speakers are powerful men who assert dominance — one through a crumbling statue, the other through chilling control over a woman." },
+    { id: 1,  theme: "oppression and control", why: "Both explore systems that suppress others — Blake's institutions and the Duke's possessive jealousy are equally suffocating." },
+    { id: 13, theme: "duty, honour and personal cost", why: "Both poems explore characters trapped by the expectations of power — the Duke by pride, the kamikaze pilot by honour." },
+  ],
+  4: [ // Charge of the Light Brigade
+    { id: 5,  theme: "reality of war", why: "Tennyson glorifies sacrifice while Owen exposes its futility — a powerful contrast in how war poetry can be weaponised." },
+    { id: 7,  theme: "soldiers in battle", why: "Both present soldiers in the chaos of conflict, though Hughes focuses on individual fear rather than collective heroism." },
+    { id: 8,  theme: "psychological aftermath", why: "Tennyson memorialises the dead in glory; Armitage shows what survives — guilt, trauma, a soldier who cannot forget." },
+  ],
+  5: [ // Exposure
+    { id: 7,  theme: "futility and fear in war", why: "Both Owen and Hughes present war as terrifying and instinctual — one through cold stasis, the other through violent motion." },
+    { id: 4,  theme: "contrast in war poetry", why: "Tennyson and Owen represent opposite attitudes to war — heroism versus suffering — making them a natural comparison pair." },
+    { id: 8,  theme: "psychological damage of war", why: "Both explore the long-term mental cost of conflict — Owen during the war, Armitage long after it ends." },
+    { id: 9,  theme: "loss and grief", why: "Both explore how war destroys people — Owen the soldier's body and mind, Weir the mother's relationship with her child." },
+  ],
+  6: [ // Storm on the Island
+    { id: 2,  theme: "power of nature", why: "Both Heaney and Wordsworth present nature as overwhelming and ultimately unknowable, humbling the humans who face it." },
+    { id: 5,  theme: "invisible threat and fear", why: "Both poems build around a threat that is felt but not fully seen — Owen's merciless cold, Heaney's 'huge nothing'." },
+  ],
+  7: [ // Bayonet Charge
+    { id: 5,  theme: "fear and futility in war", why: "Both Hughes and Owen strip war of glory — Hughes through violent motion, Owen through frozen, pointless waiting." },
+    { id: 4,  theme: "contrast with glorified war", why: "Tennyson's patriotic charge and Hughes's terrified soldier offer a stark contrast in the representation of battle." },
+    { id: 2,  theme: "instinct overcoming reason", why: "Both poems present a moment where rational thought is overwhelmed — Wordsworth by nature's sublime, Hughes by the soldier's survival instinct." },
+  ],
+  8: [ // Remains
+    { id: 5,  theme: "psychological damage of war", why: "Both Owen and Armitage show war as something that never truly ends — it haunts the mind long after the fighting stops." },
+    { id: 9,  theme: "inability to move on from loss", why: "Both Armitage and Weir explore characters unable to escape the past — one a soldier, one a grieving mother." },
+    { id: 10, theme: "moral responsibility in conflict", why: "Both Armitage and Duffy interrogate the ethics of witnessing violence — one as a soldier, one as a photographer." },
+  ],
+  9: [ // Poppies
+    { id: 8,  theme: "unable to escape the past", why: "Weir's mother and Armitage's soldier both find their minds returning compulsively to a moment they cannot undo." },
+    { id: 5,  theme: "war's impact on individuals", why: "Both explore the human cost of conflict — Owen from within it, Weir from those waiting at home." },
+    { id: 10, theme: "grief and detachment", why: "Both explore emotional distance created by conflict — Duffy through media desensitisation, Weir through physical separation from a child." },
+  ],
+  10: [ // War Photographer
+    { id: 8,  theme: "moral weight of witnessing violence", why: "Both explore what it means to witness death and suffer for it — Armitage from guilt, Duffy from detachment." },
+    { id: 5,  theme: "indifference to suffering", why: "Owen's merciless nature and Duffy's indifferent reader both show forces that don't respond to human pain." },
+    { id: 1,  theme: "social responsibility", why: "Both Blake and Duffy implicate their audiences — Blake the powerful, Duffy the comfortable newspaper reader." },
+  ],
+  11: [ // Tissue
+    { id: 0,  theme: "fragility of human power", why: "Both Dharker and Shelley argue that human structures — monuments, empires, maps — are ultimately impermanent." },
+    { id: 14, theme: "reclaiming identity from power", why: "Both poets challenge the authority of powerful systems — Dharker through paper's fragility, Agard through recovered history." },
+    { id: 1,  theme: "power structures and their limits", why: "Both Blake and Dharker expose the arbitrary nature of systems that control people's lives." },
+  ],
+  12: [ // The Émigrée
+    { id: 14, theme: "identity and belonging", why: "Both Rumens and Agard explore what it means to hold an identity that dominant culture tries to erase or dismiss." },
+    { id: 11, theme: "borders and human identity", why: "Both Dharker and Rumens question the authority of maps and borders to define who a person is." },
+    { id: 3,  theme: "being silenced by power", why: "Both poems present speakers whose identity is under threat from a controlling external force." },
+  ],
+  13: [ // Kamikaze
+    { id: 5,  theme: "duty vs. survival", why: "Both Owen and Garland explore soldiers caught between institutional expectation and the human instinct to survive." },
+    { id: 4,  theme: "honour in conflict", why: "Both explore what it means to sacrifice for a cause — Tennyson frames it as glory, Garland questions the cost." },
+    { id: 9,  theme: "family and the cost of war", why: "Both Weir and Garland focus on what war takes from families — Weir a son departing, Garland a father returning to silence." },
+    { id: 3,  theme: "shame and social control", why: "Both the Duke and the pilot's community use social pressure to control — one through fear, one through collective shame." },
+  ],
+  14: [ // Checking Out Me History
+    { id: 12, theme: "identity and belonging", why: "Both Agard and Rumens assert a cultural identity that dominant power tries to suppress or ignore." },
+    { id: 11, theme: "reclaiming power over one's story", why: "Both Dharker and Agard challenge the systems — maps, history books — that define and confine human identity." },
+    { id: 1,  theme: "institutional oppression", why: "Both Blake and Agard challenge institutions — education, government — that silence or diminish ordinary people." },
+  ],
+};
+
+// Generate a weighted random question prompt for the poem pair
+const QUESTION_PROMPTS = [
+  "How do both poets present the theme of power?",
+  "Compare the ways both poets explore conflict.",
+  "How do both poets present the effects of war on the individual?",
+  "Compare how both poets present the relationship between humans and nature.",
+  "How do both poets explore the idea of identity and belonging?",
+  "Compare the ways both poets present suffering.",
+  "How do both poets use structure and language to convey their message?",
+  "Compare how both poets present the concept of memory.",
+];
+
+const ppStepDefs = [
+  { label: 'P', name: 'Point',             starter: 'Both [poet] and [poet] present…'                                        },
+  { label: 'E', name: 'Evidence',          starter: 'In [poem], [poet] writes "[quote]", suggesting…'                       },
+  { label: 'E', name: 'Explain/Technique', starter: 'Here, [poet] uses a [technique] to suggest/create/emphasise…'           },
+  { label: 'Z', name: 'Zoom',              starter: 'The [word class] "[word]" implies… The connotations of "___" are…'       },
+  { label: 'L', name: 'Link',              starter: 'This reveals the poet\'s message that… / Ultimately, both poets suggest…' },
+];
+
+// State
+let ppCurrentStep    = 0;
+let ppScore          = 0;
+let ppAnswers        = [];
+let ppPrimaryPoem    = null;   // full poem object
+let ppComparisonPoem = null;   // full poem object
+let ppQuestion       = '';
+let ppComparisonData = null;   // the {theme, why} entry chosen
+let ppIsChecking     = false;  // prevent double-submit during API call
+
+// ── SMART POEM RANDOMISER ─────────────────────────────
+// Weights: prefer poems not recently used, prefer poems
+// that share multiple comparison partners for richer practice.
+let ppRecentPoemIds = [];
+
+function pickPracticePoems() {
+  // Weight each poem by: (1) not recently used, (2) more comparison partners = slightly higher weight
+  const weights = poems.map(p => {
+    const recentPenalty = ppRecentPoemIds.includes(p.id) ? 0.15 : 1;
+    const pairCount = (POEM_COMPARISONS[p.id] || []).length;
+    return Math.max(0.1, recentPenalty * (1 + pairCount * 0.2));
+  });
+
+  // Weighted random primary poem
+  const totalW = weights.reduce((a,b)=>a+b, 0);
+  let rand = Math.random() * totalW;
+  let primary = poems[poems.length - 1];
+  for (let i = 0; i < poems.length; i++) {
+    rand -= weights[i];
+    if (rand <= 0) { primary = poems[i]; break; }
+  }
+
+  // Pick comparison poem from this poem's curated list
+  const pairs = POEM_COMPARISONS[primary.id] || [];
+  if (!pairs.length) {
+    // Fallback: pick any other poem
+    const others = poems.filter(p => p.id !== primary.id);
+    const comp = others[Math.floor(Math.random() * others.length)];
+    ppPrimaryPoem    = primary;
+    ppComparisonPoem = comp;
+    ppComparisonData = { theme: 'power and conflict', why: 'Both poems explore related themes from the anthology.' };
+  } else {
+    // Weight comparison: prefer non-recently-used
+    const pairWeights = pairs.map(pair => ppRecentPoemIds.includes(pair.id) ? 0.2 : 1);
+    const totalPW = pairWeights.reduce((a,b)=>a+b, 0);
+    let prand = Math.random() * totalPW;
+    let chosen = pairs[pairs.length - 1];
+    for (let i = 0; i < pairs.length; i++) {
+      prand -= pairWeights[i];
+      if (prand <= 0) { chosen = pairs[i]; break; }
+    }
+    ppPrimaryPoem    = primary;
+    ppComparisonPoem = poems.find(p => p.id === chosen.id);
+    ppComparisonData = chosen;
+  }
+
+  // Track recently used
+  ppRecentPoemIds.unshift(primary.id, ppComparisonPoem.id);
+  if (ppRecentPoemIds.length > 8) ppRecentPoemIds = ppRecentPoemIds.slice(0, 8);
+
+  // Pick a relevant question prompt — prioritise theme-matching ones
+  const themeWord = ppComparisonData.theme.split(' ')[0].toLowerCase();
+  const relevant = QUESTION_PROMPTS.filter(q => q.toLowerCase().includes(themeWord));
+  ppQuestion = relevant.length
+    ? relevant[Math.floor(Math.random() * relevant.length)]
+    : QUESTION_PROMPTS[Math.floor(Math.random() * QUESTION_PROMPTS.length)];
+}
+
+// ── UI BUILDERS ───────────────────────────────────────
+function buildPPSteps() {
+  document.getElementById('pp-steps').innerHTML = ppStepDefs.map((s,i) => `
+    <div class="pp-step${i===0?' current':''}" id="pp-step-ind-${i}">${s.label} — ${s.name}</div>
+  `).join('');
+}
+
+function renderPPSetup() {
+  // Called on first load or after reset — picks poems then shows the briefing
+  pickPracticePoems();
+
+  const pA = ppPrimaryPoem;
+  const pB = ppComparisonPoem;
+
+  document.getElementById('pp-content').innerHTML = `
+    <div class="pp-card" style="max-width:760px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Your Practice Brief</div>
+
+      <div style="background:var(--black);color:var(--cream);padding:20px 24px;margin-bottom:20px;border-left:4px solid var(--yellow);">
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;">Question</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;line-height:1.5;">${ppQuestion}</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+        <div style="border:2px solid var(--black);padding:16px;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:6px;">Poem A</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:3px;">${pA.title}</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:#666;">— ${pA.author}</div>
+          <div style="margin-top:10px;font-size:0.8rem;color:#555;line-height:1.5;">${pA.theme}</div>
+        </div>
+        <div style="border:2px solid var(--black);padding:16px;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;">Poem B</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:3px;">${pB.title}</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:#666;">— ${pB.author}</div>
+          <div style="margin-top:10px;font-size:0.8rem;color:#555;line-height:1.5;">${pB.theme}</div>
+        </div>
+      </div>
+
+      <div style="background:var(--blue);padding:14px 18px;border-left:4px solid var(--black);font-size:0.85rem;line-height:1.6;margin-bottom:8px;">
+        <strong style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:4px;">Why these poems?</strong>
+        ${ppComparisonData.why}
+      </div>
+
+      <div style="background:#f8f4e8;border:1px solid #ddd;padding:12px 16px;font-size:0.8rem;color:#666;line-height:1.5;">
+        <strong style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:4px;color:#999;">Shared theme</strong>
+        ${ppComparisonData.theme.charAt(0).toUpperCase() + ppComparisonData.theme.slice(1)}
+      </div>
+    </div>
+    <div class="pp-nav" style="margin-top:20px;">
+      <button class="fc-btn primary" onclick="startPractice()">Begin Writing &rarr;</button>
+      <button class="fc-btn" onclick="renderPPSetup()">New Pair</button>
+    </div>
+  `;
+}
+
+function startPractice() {
+  ppCurrentStep = 0;
+  ppScore = 0;
+  ppAnswers = [];
+  ppIsChecking = false;
+  buildPPSteps();
+  updatePPStepIndicators();
+  renderPPStep();
+}
+
+function renderPPStep() {
+  if (ppCurrentStep >= ppStepDefs.length) {
+    showPPScore();
+    return;
+  }
+  const step = ppStepDefs[ppCurrentStep];
+  const pct  = Math.round(ppCurrentStep / ppStepDefs.length * 100);
+
+  document.getElementById('pp-progress').style.width = pct + '%';
+  document.getElementById('pp-progress-text').textContent = `Step ${ppCurrentStep + 1} of ${ppStepDefs.length}`;
+  document.getElementById('pp-score-label').textContent   = `Score: ${ppScore}`;
+  updatePPStepIndicators();
+
+  const pA = ppPrimaryPoem, pB = ppComparisonPoem;
+
+  // Per-step instruction — specific to the poems
+  const stepInstructions = {
+    'Point':             `Write your opening <strong>Point</strong> sentence. Make a clear argument about how <em>${pA.title}</em> and <em>${pB.title}</em> both address: <em>"${ppQuestion}"</em> — state the shared idea without retelling the poems.`,
+    'Evidence':          `Now embed a <strong>quote</strong> from one of the poems as evidence. Introduce it naturally in a sentence — e.g. <em>"In [poem], [poet] writes '...', suggesting..."</em>. Use one of the key quotes you know from <em>${pA.title}</em> or <em>${pB.title}</em>.`,
+    'Explain/Technique': `<strong>Explain</strong> the effect of your quote. Name the technique used (metaphor, simile, irony, personification, sibilance…) and explain what effect it has on the reader in the context of ${ppComparisonData.theme}.`,
+    'Zoom':              `<strong>Zoom in</strong> on one specific word or phrase from your quote. Name its word class (verb, noun, adjective) and explore its connotations — what does it <em>imply</em>, not just mean?`,
+    'Link':              `<strong>Link</strong> back to the question and your overall argument. You may briefly reference <em>${pB.title}</em> if you haven't yet. Avoid introducing new quotes — connect the paragraph to the bigger idea.`,
+  };
+
+  document.getElementById('pp-content').innerHTML = `
+    <div class="pp-card">
+      <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;">
+        <div>
+          <div class="pp-step-label">${step.label}</div>
+          <div class="pp-step-name">${step.name}</div>
+        </div>
+        <div style="margin-left:auto;font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:#999;padding-top:4px;">
+          ${pA.title} &amp; ${pB.title}
+        </div>
+      </div>
+      <p class="pp-question" style="margin-bottom:16px;">${stepInstructions[step.name] || step.name}</p>
+      <div class="pp-starter"><strong>Sentence Starter</strong>${step.starter}</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;font-size:0.78rem;">
+        <div style="background:#f8f4e8;padding:10px 12px;border-left:3px solid var(--yellow);">
+          <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-bottom:4px;">${pA.title} — key quotes</div>
+          ${pA.quotes.map(q=>`<div style="font-style:italic;color:#444;margin-bottom:2px;line-height:1.4;">${q}</div>`).join('')}
+        </div>
+        <div style="background:#f4f8fa;padding:10px 12px;border-left:3px solid var(--blue);">
+          <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-bottom:4px;">${pB.title} — key quotes</div>
+          ${pB.quotes.map(q=>`<div style="font-style:italic;color:#444;margin-bottom:2px;line-height:1.4;">${q}</div>`).join('')}
+        </div>
+      </div>
+
+      <textarea class="pp-textarea" id="pp-input" placeholder="Write your sentence here…" rows="4" onkeydown="handlePPEnter(event)"></textarea>
+      <div class="pp-feedback" id="pp-feedback" style="display:none;"></div>
+    </div>
+    <div class="pp-nav">
+      <button class="fc-btn primary" id="pp-check-btn" onclick="checkPPStep()">Check &amp; Continue &rarr;</button>
+      <button class="fc-btn" onclick="skipPPStep()">Skip this step</button>
+    </div>
+  `;
+  document.getElementById('pp-input').focus();
+}
+
+function handlePPEnter(e) {
+  // Ctrl+Enter or Cmd+Enter submits
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') checkPPStep();
+}
+
+function updatePPStepIndicators() {
+  ppStepDefs.forEach((_,i) => {
+    const el = document.getElementById('pp-step-ind-' + i);
+    if (!el) return;
+    el.className = 'pp-step' + (i < ppCurrentStep ? ' done' : i === ppCurrentStep ? ' current' : '');
+  });
+}
+
+// ── AI MARKING ────────────────────────────────────────
+async function checkPPStep() {
+  if (ppIsChecking) return;
+  const input = document.getElementById('pp-input').value.trim();
+
+  if (input.length < 20) {
+    const fb = document.getElementById('pp-feedback');
+    fb.style.display = 'block';
+    fb.className = 'pp-feedback ok show';
+    fb.textContent = 'Please write at least a full sentence before checking.';
+    return;
+  }
+
+  ppIsChecking = true;
+  const btn = document.getElementById('pp-check-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Marking…'; }
+
+  const fb = document.getElementById('pp-feedback');
+  fb.style.display = 'block';
+  fb.className = 'pp-feedback show';
+  fb.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;color:#888;">
+      <div class="pp-spinner"></div>
+      <span style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;">Analysing your response…</span>
+    </div>`;
+
+  const step       = ppStepDefs[ppCurrentStep];
+  const pA         = ppPrimaryPoem;
+  const pB         = ppComparisonPoem;
+  const prevSteps  = ppAnswers.map(a => `${a.step}: "${a.text}"`).join('\n');
+
+  const systemPrompt = `You are an expert GCSE English Literature examiner and teacher specialising in AQA Power & Conflict poetry. You mark student writing with the rigour of a real examiner but the warmth of a brilliant teacher. Your feedback is always specific, honest, constructive, and directly actionable.
+
+You are marking one step of a PEEZL paragraph (Point, Evidence, Explain/Technique, Zoom, Link). The student is writing a comparative paragraph about two specific poems.
+
+MARKING RULES:
+- Score 0, 1, or 2 only. Be genuinely strict but fair. Most responses deserve 1. Reserve 2 for genuinely strong analytical writing.
+- Score 0: the response fundamentally fails the requirement (too vague, wrong step type, barely relevant, just retells plot)
+- Score 1: partially meets the requirement — there's something right but it's incomplete, vague, or lacks analytical depth
+- Score 2: clearly meets the requirement with specificity, literary vocabulary, and genuine analytical insight
+
+YOUR FEEDBACK must:
+1. Open with a direct, honest verdict (1-2 sentences, no sycophancy — don't call it "great" if it isn't)
+2. Name exactly what works (be specific — quote the student's own words if positive)
+3. Name exactly what's missing or weak (be specific — quote their words if problematic)
+4. Give one concrete, actionable improvement — not a generic hint but a specific suggestion based on their actual response and the poems at hand
+5. If score is 1 or 0: show a brief model phrase (10-15 words) demonstrating the missing quality
+
+FORMAT YOUR RESPONSE AS JSON:
+{
+  "score": 0|1|2,
+  "verdict": "short honest opening assessment",
+  "strengths": "what works specifically",
+  "weaknesses": "what is missing or weak specifically",
+  "improvement": "one concrete actionable improvement",
+  "modelPhrase": "brief example phrase showing the improvement (omit if score is 2)",
+  "examinerNote": "one brief insider tip from an examiner's perspective"
+}`;
+
+  const userPrompt = `CONTEXT:
+- Step being marked: ${step.label} — ${step.name}
+- Exam question: "${ppQuestion}"
+- Poem A: "${pA.title}" by ${pA.author} | Theme: ${pA.theme} | Key quotes: ${pA.quotes.join(' / ')}
+- Poem B: "${pB.title}" by ${pB.author} | Theme: ${pB.theme} | Key quotes: ${pB.quotes.join(' / ')}
+- Shared comparison theme: ${ppComparisonData.theme}
+- Why these poems pair well: ${ppComparisonData.why}
+
+PREVIOUS STEPS WRITTEN:
+${prevSteps || '(this is the first step)'}
+
+STUDENT'S RESPONSE FOR THIS STEP:
+"${input}"
+
+What the ${step.name} step requires for a high mark:
+${step.name === 'Point' ? 'A clear comparative argument that directly addresses the question, names both poems/poets, and states a shared idea without any plot summary. Must not hedge or be vague.' : ''}
+${step.name === 'Evidence' ? 'A short, relevant quote (3-7 words) embedded naturally into a sentence with an introductory clause. Quote must be plausibly from the relevant poems. Must not be a quote dropped in isolation.' : ''}
+${step.name === 'Explain/Technique' ? 'Must name a specific technique (metaphor, simile, personification, sibilance, etc.), explain its effect on the reader, and link that effect to the comparison theme. Vague "this shows" responses score 0.' : ''}
+${step.name === 'Zoom' ? 'Must identify a specific word or short phrase, name its word class (verb, noun, adjective, etc.), and explore connotations — not just literal meaning. Must go deeper than paraphrase.' : ''}
+${step.name === 'Link' ? 'Must connect the paragraph back to the question and the poet\'s intention. Should reference both poems. Should not introduce new quotes. Must show the bigger picture argument.' : ''}
+
+Mark this response strictly and return valid JSON only.`;
+
+  try {
+    const response = await fetch('https://poetry-proxy.benmattrainor.workers.dev/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }],
+      }),
+    });
+
+    const data = await response.json();
+    const raw  = data.content?.find(b => b.type === 'text')?.text || '{}';
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const result = JSON.parse(clean);
+
+    renderAIFeedback(result, input, step);
+
+  } catch (err) {
+    fb.className = 'pp-feedback ok show';
+    fb.innerHTML = `<strong>Marking unavailable.</strong> Check your internet connection. <button class="fc-btn" style="margin-left:12px;" onclick="ppIsChecking=false;checkPPStep()">Retry</button>`;
+    ppIsChecking = false;
+    if (btn) { btn.disabled = false; btn.textContent = 'Check & Continue →'; }
+  }
+}
+
+function renderAIFeedback(result, input, step) {
+  const score    = result.score ?? 1;
+  const fb       = document.getElementById('pp-feedback');
+
+  ppScore += score;
+  ppAnswers.push({ step: step.name, text: input, score, aiResult: result });
+
+  // XP
+  const ppXP = calcPPXP(score);
+  if (ppXP > 0) awardXP(ppXP, `PEEZL ${step.label} — ${score === 2 ? 'excellent' : 'good'} response`);
+
+  const scoreColour = score === 2 ? '#2d7a4f' : score === 1 ? '#8a7a20' : '#c94b35';
+  const scoreBg     = score === 2 ? '#e8f5ee' : score === 1 ? '#fffbe6' : '#fdecea';
+  const scoreLabel  = score === 2 ? 'Strong (2/2)' : score === 1 ? 'Developing (1/2)' : 'Needs work (0/2)';
+
+  fb.style.display = 'block';
+  fb.className = 'pp-feedback show';
+  fb.style.borderLeft = `4px solid ${scoreColour}`;
+  fb.style.background = scoreBg;
+
+  fb.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+      <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:${scoreColour};line-height:1.3;">${result.verdict || 'Marked.'}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;background:${scoreColour};color:white;flex-shrink:0;">${scoreLabel}</div>
+    </div>
+
+    ${result.strengths ? `<div style="margin-bottom:10px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:#2d7a4f;margin-bottom:3px;">&#10003; What works</div>
+      <div style="font-size:0.88rem;line-height:1.6;color:#1a1a18;">${result.strengths}</div>
+    </div>` : ''}
+
+    ${result.weaknesses ? `<div style="margin-bottom:10px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:#c94b35;margin-bottom:3px;">&#9651; What's missing</div>
+      <div style="font-size:0.88rem;line-height:1.6;color:#1a1a18;">${result.weaknesses}</div>
+    </div>` : ''}
+
+    ${result.improvement ? `<div style="margin-bottom:10px;padding:10px 14px;background:rgba(0,0,0,0.04);border-left:2px solid #ccc;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:#555;margin-bottom:3px;">&#8594; Improve it</div>
+      <div style="font-size:0.88rem;line-height:1.6;color:#1a1a18;">${result.improvement}</div>
+      ${result.modelPhrase ? `<div style="margin-top:6px;font-style:italic;font-family:'Playfair Display',serif;font-size:0.9rem;color:#555;">"${result.modelPhrase}"</div>` : ''}
+    </div>` : ''}
+
+    ${result.examinerNote ? `<div style="margin-top:8px;font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.05em;color:#888;border-top:1px solid #ddd;padding-top:8px;">
+      <span style="text-transform:uppercase;letter-spacing:0.12em;margin-right:4px;">Examiner tip:</span>${result.examinerNote}
+    </div>` : ''}
+
+    <div style="margin-top:14px;">
+      <button class="fc-btn primary" onclick="advancePPStep()" style="font-size:0.65rem;">
+        ${ppCurrentStep + 1 < ppStepDefs.length ? 'Next Step &rarr;' : 'See Results &rarr;'}
+      </button>
+    </div>
+  `;
+
+  ppIsChecking = false;
+}
+
+function advancePPStep() {
+  ppCurrentStep++;
+  renderPPStep();
+}
+
+function skipPPStep() {
+  ppAnswers.push({ step: ppStepDefs[ppCurrentStep].name, text: '', score: 0, skipped: true });
+  ppCurrentStep++;
+  renderPPStep();
+}
+
+// ── RESULTS SCREEN ────────────────────────────────────
+async function showPPScore() {
+  document.getElementById('pp-progress').style.width = '100%';
+  document.getElementById('pp-progress-text').textContent = 'Complete!';
+  document.getElementById('pp-score-label').textContent   = `Final score: ${ppScore}/${ppStepDefs.length * 2}`;
+  ppStepDefs.forEach((_,i) => {
+    const el = document.getElementById('pp-step-ind-' + i);
+    if (el) el.className = 'pp-step done';
+  });
+
+  const pA  = ppPrimaryPoem;
+  const pB  = ppComparisonPoem;
+  const pct = ppScore / (ppStepDefs.length * 2);
+
+  // Build a step-by-step summary
+  const stepSummary = ppAnswers.map(a => {
+    if (a.skipped) return `<div style="padding:10px 14px;border-bottom:1px solid #eee;color:#999;font-size:0.8rem;font-style:italic;">${a.step} — skipped</div>`;
+    const c = a.score === 2 ? '#2d7a4f' : a.score === 1 ? '#8a7a20' : '#c94b35';
+    const v = a.aiResult?.verdict || '';
+    return `
+      <div style="padding:12px 14px;border-bottom:1px solid #eee;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <span style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:${c};">${a.step} — ${a.score}/2</span>
+        </div>
+        <div style="font-size:0.82rem;color:#444;font-style:italic;margin-bottom:4px;">"${a.text.slice(0,120)}${a.text.length>120?'…':''}"</div>
+        ${v ? `<div style="font-size:0.8rem;color:#666;">${v}</div>` : ''}
+      </div>`;
+  }).join('');
+
+  // Ask AI for a holistic summary and alternative poem suggestion
+  document.getElementById('pp-content').innerHTML = `
+    <div class="pp-score-board" style="max-width:680px;text-align:left;padding:36px;">
+      <div style="text-align:center;margin-bottom:28px;">
+        <h3 style="font-family:'Playfair Display',serif;margin-bottom:8px;">PEEZL Complete</h3>
+        <div class="pp-score-big">${ppScore}/${ppStepDefs.length * 2}</div>
+        <div class="pp-grade">${pct>=0.9?'Grade 9':pct>=0.75?'Grade 7–8':pct>=0.5?'Grade 5–6':'Keep Practising'}</div>
+        <div style="font-size:0.8rem;color:var(--grey);margin-top:6px;">Comparing ${pA.title} &amp; ${pB.title}</div>
+      </div>
+
+      <div style="background:#1e1e1c;border:1px solid #333;margin-bottom:20px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;padding:8px 14px;border-bottom:1px solid #333;color:#888;">Step breakdown</div>
+        ${stepSummary}
+      </div>
+
+      <div id="pp-holistic-feedback" style="background:#1e1e1c;border:1px solid var(--yellow);padding:20px;margin-bottom:20px;">
+        <div style="display:flex;align-items:center;gap:8px;color:#888;font-family:'DM Mono',monospace;font-size:0.7rem;">
+          <div class="pp-spinner" style="border-top-color:var(--yellow);"></div>
+          Generating expert analysis…
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="fc-btn" style="background:var(--yellow);border-color:var(--yellow);color:var(--black);" onclick="resetPP()">Try Again — New Poems</button>
+        <button class="fc-btn" onclick="retryWithSamePoems()">Retry Same Poems</button>
+      </div>
+    </div>
+  `;
+
+  // Request holistic AI summary + alternative pair suggestion
+  await generateHolisticFeedback();
+}
+
+async function generateHolisticFeedback() {
+  const pA = ppPrimaryPoem, pB = ppComparisonPoem;
+  const stepLog = ppAnswers.map(a =>
+    `${a.step} (${a.score}/2): "${a.text}" ${a.aiResult ? '| Examiner verdict: ' + a.aiResult.verdict : a.skipped ? '| Skipped' : ''}`
+  ).join('\n');
+
+  // Find the best alternative comparison poem for pA that wasn't used
+  const alts = (POEM_COMPARISONS[pA.id] || []).filter(p => p.id !== pB.id);
+  const altPoem = alts.length ? poems.find(p => p.id === alts[0].id) : null;
+  const altWhy  = alts.length ? alts[0].why : '';
+
+  const prompt = `You are an expert AQA GCSE English Literature examiner. A student has just completed a PEEZL comparative paragraph practice session.
+
+CONTEXT:
+- Question: "${ppQuestion}"
+- Poems compared: "${pA.title}" (${pA.author}) and "${pB.title}" (${pB.author})
+- Shared theme: ${ppComparisonData.theme}
+
+STEP-BY-STEP RECORD:
+${stepLog}
+
+Total score: ${ppScore} out of ${ppStepDefs.length * 2}
+
+Your task:
+1. Write a SHORT holistic assessment (3-4 sentences max) of the whole paragraph — what's the overall quality? Is there a coherent argument? Does the analysis develop step to step?
+2. Name the single most important thing to work on for next time.
+3. Suggest whether an alternative poem pairing might have been MORE effective for this question, and briefly explain why. The alternative pairing is: "${altPoem ? altPoem.title + ' by ' + altPoem.author + ' — ' + altWhy : 'consider any other poem from the anthology'}"
+4. Give one specific quote from one of the two poems that would have been particularly powerful for this question/theme if the student didn't use it.
+
+FORMAT AS JSON:
+{
+  "holisticAssessment": "3-4 sentence overall verdict",
+  "keyPriority": "single most important improvement for next time",
+  "alternativeSuggestion": "whether a different poem would have worked better, and why — be specific and name the alternative",
+  "powerQuote": "a specific quote from either poem that would strengthen a response to this question",
+  "powerQuotePoem": "which poem and poet the quote is from",
+  "powerQuoteWhy": "why this quote is particularly effective for this question"
+}
+
+Return valid JSON only.`;
+
+  try {
+    const resp = await fetch('https://poetry-proxy.benmattrainor.workers.dev/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+    const data  = await resp.json();
+    const raw   = data.content?.find(b => b.type === 'text')?.text || '{}';
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const r     = JSON.parse(clean);
+    renderHolisticFeedback(r);
+  } catch(e) {
+    document.getElementById('pp-holistic-feedback').innerHTML =
+      '<div style="color:#888;font-size:0.8rem;font-family:\'DM Mono\',monospace;">Holistic analysis unavailable — check connection.</div>';
+  }
+}
+
+function renderHolisticFeedback(r) {
+  const el = document.getElementById('pp-holistic-feedback');
+  if (!el) return;
+  el.innerHTML = `
+    <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:12px;">Expert Analysis</div>
+
+    <div style="font-size:0.88rem;line-height:1.7;color:var(--cream);margin-bottom:14px;">${r.holisticAssessment || ''}</div>
+
+    ${r.keyPriority ? `<div style="padding:10px 14px;border-left:3px solid var(--red);background:rgba(201,75,53,0.12);margin-bottom:14px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:3px;">Priority for next time</div>
+      <div style="font-size:0.85rem;line-height:1.5;color:var(--cream);">${r.keyPriority}</div>
+    </div>` : ''}
+
+    ${r.alternativeSuggestion ? `<div style="padding:10px 14px;border-left:3px solid var(--blue);background:rgba(168,197,200,0.1);margin-bottom:14px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:3px;">Alternative poem pairing</div>
+      <div style="font-size:0.85rem;line-height:1.5;color:var(--cream);">${r.alternativeSuggestion}</div>
+    </div>` : ''}
+
+    ${r.powerQuote ? `<div style="padding:10px 14px;border-left:3px solid var(--yellow);background:rgba(223,200,74,0.08);">
+      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:3px;">Powerful quote you could have used</div>
+      <div style="font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;color:var(--cream);margin-bottom:4px;">${r.powerQuote}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:#888;margin-bottom:5px;">— ${r.powerQuotePoem || ''}</div>
+      <div style="font-size:0.82rem;line-height:1.5;color:#bbb;">${r.powerQuoteWhy || ''}</div>
+    </div>` : ''}
+  `;
+}
+
+function resetPP() {
+  ppCurrentStep = 0;
+  ppScore       = 0;
+  ppAnswers     = [];
+  ppIsChecking  = false;
+  renderPPSetup();
+}
+
+function retryWithSamePoems() {
+  ppCurrentStep = 0;
+  ppScore       = 0;
+  ppAnswers     = [];
+  ppIsChecking  = false;
+  buildPPSteps();
+  updatePPStepIndicators();
+  renderPPStep();
+}
+
+// ─── ESSAY GUIDE ──────────────────────────────────────
+function buildGuide() {
+  document.getElementById('peace-grid').innerHTML = peaceData.map(p => `
+    <div class="guide-card">
+      <div class="guide-card-head" style="background:${p.color};${p.color==='var(--black)'?'color:var(--cream)':''};">
+        <div class="guide-letter" style="border-color:${p.color==='var(--black)'?'var(--cream)':'var(--black)'};${p.color==='var(--black)'?'color:var(--cream)':''}">${p.letter}</div>
+        ${p.name}
+      </div>
+      <div class="guide-card-body">
+        <p>${p.desc}</p>
+        <ul class="guide-starters">
+          ${p.starters.map(s=>`<li>${s}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('vocab-grid').innerHTML = vocabWords.map(w => `<div class="vocab-tag">${w}</div>`).join('');
+
+  const checklist = document.getElementById('checklist');
+  checklist.innerHTML = checklistItems.map((item,i) => `
+    <div class="checklist-item" id="cl-${i}" onclick="toggleCheck(${i})">
+      <div class="check-box" id="cb-${i}"></div>
+      <span>${item}</span>
+    </div>
+  `).join('');
+}
+
+function toggleCheck(i) {
+  const item = document.getElementById('cl-'+i);
+  const box = document.getElementById('cb-'+i);
+  const checked = item.classList.toggle('checked');
+  box.textContent = checked ? '✓' : '';
+}
+
+// ═══════════════════════════════════════════════════════
+// XP / LEVEL SYSTEM
+// ═══════════════════════════════════════════════════════
+
+// Level definitions — name, total XP needed to REACH this level
+const XP_LEVELS = [
+  { level: 1,  name: "Novice Reader",         xpRequired: 0,    desc: "You've just opened the anthology. Every expert started here." },
+  { level: 2,  name: "Attentive Scholar",     xpRequired: 100,  desc: "You're starting to engage with the poems. Keep going." },
+  { level: 3,  name: "Keen Analyst",          xpRequired: 250,  desc: "Your close-reading instincts are sharpening." },
+  { level: 4,  name: "Quote Hunter",          xpRequired: 500,  desc: "You're building a reliable bank of textual evidence." },
+  { level: 5,  name: "Theme Mapper",          xpRequired: 850,  desc: "Connections between poems are forming in your mind." },
+  { level: 6,  name: "Context Scholar",       xpRequired: 1300, desc: "You understand the 'why' behind each poem." },
+  { level: 7,  name: "Comparative Thinker",   xpRequired: 1900, desc: "You can hold two poems in your head at once. Grade 6 territory." },
+  { level: 8,  name: "Structural Reader",     xpRequired: 2700, desc: "Form and structure are no longer mysteries." },
+  { level: 9,  name: "Literary Critic",       xpRequired: 3700, desc: "Your analysis goes beyond surface meaning. Grade 7 writing." },
+  { level: 10, name: "Anthology Master",      xpRequired: 5000, desc: "All 15 poems feel like old friends. Grade 8 in sight." },
+  { level: 11, name: "Power & Conflict Sage", xpRequired: 6800, desc: "Few can match your grasp of this cluster. Grade 9 awaits." },
+  { level: 12, name: "Grade 9 Poet",          xpRequired: 9000, desc: "You've reached the summit. Every examiner would be impressed." },
+];
+
+// XP rewards — calibrated against SM-2 difficulty
+// Card difficulty bucket → base XP
+// Hard (ef<1.7): 40 | Medium (ef<2.2): 25 | Easy (ef>=2.2): 12 | New: 20
+// Rating multiplier: 1(fail)→ 0.5x | 3(getting there)→ 1x | 5(got it)→ 1.5x
+// Streak bonus: +5 per card in a streak (capped at +25)
+// PEEZL step: score 2→30 | score 1→15 | score 0→0
+
+let xpState = {
+  totalXP: 0,
+  level: 1,
+};
+let xpToastTimer = null;
+let xpToastQueue = [];
+
+function getDifficultyBucket(srsRecord) {
+  if (!srsRecord || srsRecord.timesShown === 0) return 'new';
+  if (srsRecord.easeFactor < 1.7) return 'hard';
+  if (srsRecord.easeFactor < 2.2) return 'medium';
+  return 'easy';
+}
+
+function calcCardXP(srsRecord, rating) {
+  const bucket = getDifficultyBucket(srsRecord);
+  const baseMap = { new: 20, hard: 40, medium: 25, easy: 12 };
+  const ratingMult = rating === 1 ? 0.5 : rating === 3 ? 1.0 : 1.5;
+  const base = baseMap[bucket] * ratingMult;
+  // Streak bonus (up to +25)
+  const streakBonus = Math.min(fcStreak * 5, 25);
+  return Math.round(base + streakBonus);
+}
+
+function calcPPXP(score) {
+  // score 0,1,2 per step
+  return score === 2 ? 30 : score === 1 ? 15 : 0;
+}
+
+function getLevelForXP(xp) {
+  let current = XP_LEVELS[0];
+  for (let i = XP_LEVELS.length - 1; i >= 0; i--) {
+    if (xp >= XP_LEVELS[i].xpRequired) { current = XP_LEVELS[i]; break; }
+  }
+  return current;
+}
+
+function getNextLevel(level) {
+  return XP_LEVELS.find(l => l.level === level + 1) || null;
+}
+
+function awardXP(amount, reason) {
+  if (amount <= 0) return;
+  const prevLevel = getLevelForXP(xpState.totalXP);
+  xpState.totalXP += amount;
+  const newLevel = getLevelForXP(xpState.totalXP);
+  xpState.level = newLevel.level;
+  updateXPBar();
+
+  // Show toast
+  showXPToast(amount, reason);
+
+  // Level up?
+  if (newLevel.level > prevLevel.level) {
+    setTimeout(() => showLevelUp(newLevel), 700);
+  }
+}
+
+function updateXPBar() {
+  const lvlData = getLevelForXP(xpState.totalXP);
+  const nextLvlData = getNextLevel(lvlData.level);
+  const lvlXPStart = lvlData.xpRequired;
+  const lvlXPEnd = nextLvlData ? nextLvlData.xpRequired : lvlData.xpRequired;
+  const inLvl = xpState.totalXP - lvlXPStart;
+  const range = lvlXPEnd - lvlXPStart;
+  const pct = nextLvlData ? Math.min(100, (inLvl / range) * 100) : 100;
+
+  document.getElementById('xp-level-badge').textContent = lvlData.level;
+  document.getElementById('xp-level-name-label').textContent = lvlData.name;
+  document.getElementById('xp-bar-fill').style.width = pct + '%';
+  document.getElementById('xp-bar-numbers').textContent =
+    nextLvlData ? inLvl + ' / ' + range + ' XP' : 'MAX LEVEL';
+
+  if (nextLvlData) {
+    const remaining = lvlXPEnd - xpState.totalXP;
+    document.getElementById('xp-next-level-label').textContent = 'Next: ' + nextLvlData.name;
+
+    // Tooltip — breakdown hints
+    const cardsHard   = Math.ceil(remaining / 60);  // hard card answered well
+    const cardsMedium = Math.ceil(remaining / 37);
+    const cardsEasy   = Math.ceil(remaining / 18);
+    document.getElementById('xp-tooltip').innerHTML =
+      remaining + ' XP to next level<br>' +
+      cardsHard + ' hard cards answered &bull; ' + cardsMedium + ' medium &bull; ' + cardsEasy + ' easy<br>' +
+      'or ' + Math.ceil(remaining / 30) + ' PEEZL steps scored perfectly';
+  } else {
+    document.getElementById('xp-next-level-label').textContent = 'Max Level!';
+    document.getElementById('xp-tooltip').textContent = 'You have reached the highest rank. Remarkable.';
+  }
+}
+
+function showXPToast(amount, reason) {
+  xpToastQueue.push({ amount, reason });
+  if (xpToastQueue.length === 1) drainToastQueue();
+}
+
+function drainToastQueue() {
+  if (!xpToastQueue.length) return;
+  const { amount, reason } = xpToastQueue[0];
+  const toast = document.getElementById('xp-toast');
+  document.getElementById('xp-toast-amount').textContent = '+' + amount + ' XP';
+  document.getElementById('xp-toast-reason').textContent = reason;
+  toast.classList.remove('xp-toast-level-up');
+  toast.classList.add('show');
+  clearTimeout(xpToastTimer);
+  xpToastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => {
+      xpToastQueue.shift();
+      drainToastQueue();
+    }, 400);
+  }, 2200);
+}
+
+function showLevelUp(lvl) {
+  document.getElementById('levelup-num').textContent = lvl.level;
+  document.getElementById('levelup-name').textContent = lvl.name;
+  document.getElementById('levelup-desc').textContent = lvl.desc;
+  document.getElementById('levelup-overlay').classList.add('show');
+}
+
+function closeLevelUp() {
+  document.getElementById('levelup-overlay').classList.remove('show');
+}
+
+// ═══════════════════════════════════════════════════════
+// SAVE / LOAD PROGRESS  —  version 3
+// ═══════════════════════════════════════════════════════
+// Saved state includes:
+//   xpState, fcSRS, fcStreak, fcSessionTick,
+//   ppRecentPoemIds, ppAnswers (full history),
+//   ppCurrentStep, ppScore, ppPrimaryPoem id,
+//   ppComparisonPoem id, ppQuestion, ppComparisonData
+
+const SAVE_VERSION = 3;
+
+function gatherSaveData() {
+  return {
+    version:        SAVE_VERSION,
+    savedAt:        new Date().toISOString(),
+    // XP / levels
+    xpState:        { ...xpState },
+    // Flashcard SRS engine
+    fcSRS:          fcSRS,
+    fcStreak:       fcStreak,
+    fcSessionTick:  fcSessionTick,
+    // PEEZL paragraph practice
+    ppRecentPoemIds:  ppRecentPoemIds,
+    ppCurrentStep:    ppCurrentStep,
+    ppScore:          ppScore,
+    ppAnswers:        ppAnswers,
+    ppPrimaryPoemId:  ppPrimaryPoem   ? ppPrimaryPoem.id   : null,
+    ppComparisonPoemId: ppComparisonPoem ? ppComparisonPoem.id : null,
+    ppQuestion:       ppQuestion,
+    ppComparisonData: ppComparisonData,
+  };
+}
+
+function saveProgress() {
+  const data = gatherSaveData();
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  const ts   = new Date().toISOString().slice(0, 16).replace('T', '_').replace(':', 'h') + 'm';
+  a.download = 'pc-revision-' + ts + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  setSaveStatus('Saved ' + new Date().toLocaleTimeString(), 'ok');
+}
+
+function loadProgressFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      applyLoadedData(data, file.name);
+    } catch (err) {
+      setSaveStatus('Error: could not read file', 'err');
+    }
+    event.target.value = ''; // reset so same file can be reloaded
+  };
+  reader.readAsText(file);
+}
+
+function applyLoadedData(data, fileName) {
+  if (!data || !data.version) {
+    setSaveStatus('Error: not a valid save file', 'err');
+    return;
+  }
+
+  // ── XP / level ──────────────────────────────────────
+  if (data.xpState) {
+    xpState.totalXP = Number(data.xpState.totalXP) || 0;
+    xpState.level   = Number(data.xpState.level)   || 1;
+  }
+
+  // ── Flashcards ──────────────────────────────────────
+  if (data.fcSRS)                         fcSRS         = data.fcSRS;
+  if (data.fcStreak       !== undefined)  fcStreak      = Number(data.fcStreak)      || 0;
+  if (data.fcSessionTick  !== undefined)  fcSessionTick = Number(data.fcSessionTick) || 0;
+
+  // ── PEEZL state ─────────────────────────────────────
+  if (Array.isArray(data.ppRecentPoemIds)) ppRecentPoemIds = data.ppRecentPoemIds;
+  if (Array.isArray(data.ppAnswers))       ppAnswers       = data.ppAnswers;
+  if (data.ppCurrentStep !== undefined)    ppCurrentStep   = Number(data.ppCurrentStep) || 0;
+  if (data.ppScore       !== undefined)    ppScore         = Number(data.ppScore)        || 0;
+  if (data.ppQuestion)                     ppQuestion      = data.ppQuestion;
+  if (data.ppComparisonData)               ppComparisonData = data.ppComparisonData;
+
+  // Resolve poem objects from saved IDs
+  if (data.ppPrimaryPoemId !== null && data.ppPrimaryPoemId !== undefined) {
+    ppPrimaryPoem = poems.find(p => p.id === data.ppPrimaryPoemId) || null;
+  }
+  if (data.ppComparisonPoemId !== null && data.ppComparisonPoemId !== undefined) {
+    ppComparisonPoem = poems.find(p => p.id === data.ppComparisonPoemId) || null;
+  }
+
+  // ── Re-initialise UI ────────────────────────────────
+  buildFCCards();         // re-seeds SRS records for any new cards while preserving loaded ones
+  updateFCStats();
+  updateHeatmap();
+  updateXPBar();
+
+  // Restore PEEZL to the right screen
+  buildPPSteps();
+  updatePPStepIndicators();
+
+  if (!ppPrimaryPoem || !ppComparisonPoem) {
+    // Saved poem ids don't resolve (edge case) — fresh setup
+    renderPPSetup();
+  } else if (ppCurrentStep >= ppStepDefs.length) {
+    // Was on results screen — jump to results without re-running AI
+    restorePPResults();
+  } else if (ppCurrentStep > 0 || ppAnswers.length > 0) {
+    // Was mid-session — resume
+    renderPPStep();
+  } else {
+    // Was on setup/briefing screen
+    renderPPSetup();
+  }
+
+  // Friendly status message
+  const savedDate = data.savedAt ? new Date(data.savedAt).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : 'unknown date';
+  setSaveStatus(`Loaded · saved ${savedDate} · Level ${data.xpState?.level || 1} · ${data.xpState?.totalXP || 0} XP`, 'ok');
+}
+
+// Show a static results summary without re-calling AI (used on load)
+function restorePPResults() {
+  document.getElementById('pp-progress').style.width = '100%';
+  document.getElementById('pp-progress-text').textContent = 'Complete!';
+  document.getElementById('pp-score-label').textContent   = `Final score: ${ppScore}/${ppStepDefs.length * 2}`;
+  ppStepDefs.forEach((_,i) => {
+    const el = document.getElementById('pp-step-ind-' + i);
+    if (el) el.className = 'pp-step done';
+  });
+
+  const pct  = ppScore / (ppStepDefs.length * 2);
+  const pA   = ppPrimaryPoem;
+  const pB   = ppComparisonPoem;
+
+  const stepSummary = ppAnswers.map(a => {
+    if (a.skipped) return `<div style="padding:10px 14px;border-bottom:1px solid #eee;color:#999;font-size:0.8rem;font-style:italic;">${a.step} — skipped</div>`;
+    const c = a.score === 2 ? '#2d7a4f' : a.score === 1 ? '#8a7a20' : '#c94b35';
+    const v = a.aiResult?.verdict || '';
+    return `
+      <div style="padding:12px 14px;border-bottom:1px solid #eee;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:${c};margin-bottom:4px;">${a.step} — ${a.score}/2</div>
+        <div style="font-size:0.82rem;color:#444;font-style:italic;margin-bottom:4px;">"${(a.text||'').slice(0,120)}${(a.text||'').length>120?'…':''}"</div>
+        ${v ? `<div style="font-size:0.8rem;color:#666;">${v}</div>` : ''}
+      </div>`;
+  }).join('');
+
+  document.getElementById('pp-content').innerHTML = `
+    <div class="pp-score-board" style="max-width:680px;text-align:left;padding:36px;">
+      <div style="text-align:center;margin-bottom:28px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;">Restored from save</div>
+        <h3 style="font-family:'Playfair Display',serif;margin-bottom:8px;">PEEZL Complete</h3>
+        <div class="pp-score-big">${ppScore}/${ppStepDefs.length * 2}</div>
+        <div class="pp-grade">${pct>=0.9?'Grade 9':pct>=0.75?'Grade 7–8':pct>=0.5?'Grade 5–6':'Keep Practising'}</div>
+        <div style="font-size:0.8rem;color:var(--grey);margin-top:6px;">${pA?.title || ''} &amp; ${pB?.title || ''}</div>
+      </div>
+      <div style="background:#1e1e1c;border:1px solid #333;margin-bottom:20px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;padding:8px 14px;border-bottom:1px solid #333;color:#888;">Step breakdown</div>
+        ${stepSummary}
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="fc-btn" style="background:var(--yellow);border-color:var(--yellow);color:var(--black);" onclick="resetPP()">New Practice</button>
+        <button class="fc-btn" onclick="retryWithSamePoems()">Retry Same Poems</button>
+      </div>
+    </div>
+  `;
+}
+
+function setSaveStatus(msg, state) {
+  const el = document.getElementById('save-status');
+  el.textContent = msg;
+  // state: 'ok' | 'err' | '' (neutral)
+  el.className = state === 'ok' ? 'ok' : state === 'err' ? 'err' : '';
+}
+
+// ─── INIT ──────────────────────────────────────────────
+buildPoemsGrid();
+buildFCCards();
+updateHeatmap();
+buildGuide();
+buildPPSteps();
+renderPPSetup();
+updateXPBar();
+</script>
+</body>
+</html>
