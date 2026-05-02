@@ -1302,6 +1302,7 @@ nav {
     <div class="pp-step-indicator" id="pp-steps"></div>
 
     <div id="pp-content"></div>
+    <div id="pp-holistic-wrap" style="display:none;max-width:680px;margin:0 auto 32px;"></div>
   </div>
 </div>
 
@@ -2402,7 +2403,7 @@ async function showPPScore() {
       </div>`;
   }).join('');
 
-  // Ask AI for a holistic summary and alternative poem suggestion
+  // Render results — holistic section lives in pp-holistic-wrap (outside pp-content) so it never gets wiped
   document.getElementById('pp-content').innerHTML = `
     <div class="pp-score-board" style="max-width:680px;text-align:left;padding:36px;">
       <div style="text-align:center;margin-bottom:28px;">
@@ -2417,13 +2418,6 @@ async function showPPScore() {
         ${stepSummary}
       </div>
 
-      <div id="pp-holistic-feedback" style="background:#fff;border:2px solid var(--yellow);padding:20px;margin-bottom:20px;">
-        <div style="display:flex;align-items:center;gap:8px;color:#888;font-family:'DM Mono',monospace;font-size:0.7rem;">
-          <div class="pp-spinner" style="border-top-color:var(--yellow);"></div>
-          Generating expert analysis…
-        </div>
-      </div>
-
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button class="fc-btn" style="background:var(--yellow);border-color:var(--yellow);color:var(--black);" onclick="resetPP()">Try Again — New Poems</button>
         <button class="fc-btn" onclick="retryWithSamePoems()">Retry Same Poems</button>
@@ -2431,9 +2425,19 @@ async function showPPScore() {
     </div>
   `;
 
-  // Request holistic AI summary + alternative pair suggestion
-  // Small delay to ensure DOM is fully painted before async call
-  setTimeout(() => generateHolisticFeedback(), 100);
+  // Reveal the permanent holistic wrapper (outside pp-content, safe from being overwritten)
+  const wrap = document.getElementById('pp-holistic-wrap');
+  wrap.style.display = 'block';
+  wrap.innerHTML = `
+    <div style="background:#fff;border:2px solid var(--yellow);padding:20px;">
+      <div style="display:flex;align-items:center;gap:8px;color:#888;font-family:'DM Mono',monospace;font-size:0.7rem;">
+        <div class="pp-spinner" style="border-top-color:#b09a20;"></div>
+        Generating expert analysis…
+      </div>
+    </div>`;
+
+  // Fire holistic API call — safe now because it targets pp-holistic-wrap, not pp-content
+  generateHolisticFeedback();
 }
 
 async function generateHolisticFeedback() {
@@ -2493,43 +2497,48 @@ Return valid JSON only.`;
     const r     = JSON.parse(clean);
     renderHolisticFeedback(r);
   } catch(e) {
-    document.getElementById('pp-holistic-feedback').innerHTML =
-      '<div style="color:#888;font-size:0.8rem;font-family:\'DM Mono\',monospace;">Holistic analysis unavailable — check connection.</div>';
+    const wrap = document.getElementById('pp-holistic-wrap');
+    if (wrap) wrap.innerHTML = '<div style="color:#888;font-size:0.8rem;font-family:\'DM Mono\',monospace;padding:16px;">Holistic analysis unavailable — check connection.</div>';
   }
 }
 
 function renderHolisticFeedback(r) {
-  const el = document.getElementById('pp-holistic-feedback');
-  if (!el) return;
-  el.innerHTML = `
-    <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#7a6510;margin-bottom:12px;">Expert Analysis</div>
+  const wrap = document.getElementById('pp-holistic-wrap');
+  if (!wrap) return;
+  wrap.innerHTML = `
+    <div style="background:#fff;border:2px solid var(--yellow);padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#7a6510;margin-bottom:12px;">Expert Analysis</div>
 
-    <div style="font-size:0.88rem;line-height:1.7;color:#1a1a18;margin-bottom:14px;">${r.holisticAssessment || ''}</div>
+      <div style="font-size:0.88rem;line-height:1.7;color:#1a1a18;margin-bottom:14px;">${r.holisticAssessment || ''}</div>
 
-    ${r.keyPriority ? `<div style="padding:10px 14px;border-left:3px solid var(--red);background:#fdf2f0;margin-bottom:14px;">
-      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:3px;">Priority for next time</div>
-      <div style="font-size:0.85rem;line-height:1.5;color:#1a1a18;">${r.keyPriority}</div>
-    </div>` : ''}
+      ${r.keyPriority ? `<div style="padding:10px 14px;border-left:3px solid var(--red);background:#fdf2f0;margin-bottom:14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:3px;">Priority for next time</div>
+        <div style="font-size:0.85rem;line-height:1.5;color:#1a1a18;">${r.keyPriority}</div>
+      </div>` : ''}
 
-    ${r.alternativeSuggestion ? `<div style="padding:10px 14px;border-left:3px solid #5a8fa0;background:#f0f6f8;margin-bottom:14px;">
-      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#5a8fa0;margin-bottom:3px;">Alternative poem pairing</div>
-      <div style="font-size:0.85rem;line-height:1.5;color:#1a1a18;">${r.alternativeSuggestion}</div>
-    </div>` : ''}
+      ${r.alternativeSuggestion ? `<div style="padding:10px 14px;border-left:3px solid #5a8fa0;background:#f0f6f8;margin-bottom:14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#5a8fa0;margin-bottom:3px;">Alternative poem pairing</div>
+        <div style="font-size:0.85rem;line-height:1.5;color:#1a1a18;">${r.alternativeSuggestion}</div>
+      </div>` : ''}
 
-    ${r.powerQuote ? `<div style="padding:10px 14px;border-left:3px solid #b09a20;background:#fdfbf0;">
-      <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#7a6510;margin-bottom:3px;">Powerful quote you could have used</div>
-      <div style="font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;color:#1a1a18;margin-bottom:4px;">${r.powerQuote}</div>
-      <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:#666;margin-bottom:5px;">— ${r.powerQuotePoem || ''}</div>
-      <div style="font-size:0.82rem;line-height:1.5;color:#444;">${r.powerQuoteWhy || ''}</div>
-    </div>` : ''}
+      ${r.powerQuote ? `<div style="padding:10px 14px;border-left:3px solid #b09a20;background:#fdfbf0;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#7a6510;margin-bottom:3px;">Powerful quote you could have used</div>
+        <div style="font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;color:#1a1a18;margin-bottom:4px;">${r.powerQuote}</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:#666;margin-bottom:5px;">— ${r.powerQuotePoem || ''}</div>
+        <div style="font-size:0.82rem;line-height:1.5;color:#444;">${r.powerQuoteWhy || ''}</div>
+      </div>` : ''}
+    </div>
   `;
 }
+
 
 function resetPP() {
   ppCurrentStep = 0;
   ppScore       = 0;
   ppAnswers     = [];
   ppIsChecking  = false;
+  const wrap = document.getElementById('pp-holistic-wrap');
+  if (wrap) { wrap.style.display = 'none'; wrap.innerHTML = ''; }
   renderPPSetup();
 }
 
@@ -2538,6 +2547,8 @@ function retryWithSamePoems() {
   ppScore       = 0;
   ppAnswers     = [];
   ppIsChecking  = false;
+  const wrap = document.getElementById('pp-holistic-wrap');
+  if (wrap) { wrap.style.display = 'none'; wrap.innerHTML = ''; }
   buildPPSteps();
   updatePPStepIndicators();
   renderPPStep();
