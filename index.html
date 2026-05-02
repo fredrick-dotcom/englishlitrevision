@@ -2491,14 +2491,38 @@ Return valid JSON only.`;
         messages: [{ role: 'user', content: prompt }],
       }),
     });
-    const data  = await resp.json();
-    const raw   = data.content?.find(b => b.type === 'text')?.text || '{}';
+
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+
+    const data = await resp.json();
+
+    // Handle API-level errors (e.g. invalid key, quota exceeded)
+    if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+
+    const raw   = data.content?.find(b => b.type === 'text')?.text || '';
+    if (!raw) throw new Error('Empty response from API');
+
     const clean = raw.replace(/```json|```/g, '').trim();
-    const r     = JSON.parse(clean);
+    let r;
+    try {
+      r = JSON.parse(clean);
+    } catch(parseErr) {
+      // If JSON parse fails, show raw text so we can debug
+      const wrap = document.getElementById('pp-holistic-wrap');
+      if (wrap) wrap.innerHTML = `<div style="padding:16px;border:2px solid var(--yellow);">
+        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;text-transform:uppercase;color:#7a6510;margin-bottom:8px;">Expert Analysis</div>
+        <div style="font-size:0.85rem;line-height:1.7;color:#1a1a18;">${clean.replace(/</g,'&lt;')}</div>
+      </div>`;
+      return;
+    }
     renderHolisticFeedback(r);
+
   } catch(e) {
     const wrap = document.getElementById('pp-holistic-wrap');
-    if (wrap) wrap.innerHTML = '<div style="color:#888;font-size:0.8rem;font-family:\'DM Mono\',monospace;padding:16px;">Holistic analysis unavailable — check connection.</div>';
+    if (wrap) wrap.innerHTML = `<div style="padding:16px;border:2px solid var(--red);">
+      <div style="font-family:'DM Mono',monospace;font-size:0.55rem;text-transform:uppercase;color:var(--red);margin-bottom:6px;">Expert Analysis Error</div>
+      <div style="font-size:0.8rem;color:#555;">${e.message || 'Unknown error — check Cloudflare Worker logs'}</div>
+    </div>`;
   }
 }
 
